@@ -19,6 +19,7 @@ export default function RootLayout({
       <body className={`${poppins.className} flex flex-col px-10 antialiased`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
