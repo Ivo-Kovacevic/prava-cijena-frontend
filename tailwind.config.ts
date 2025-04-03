@@ -23,9 +23,6 @@ export default {
         h5: "1.125rem",
         h6: "1rem",
       },
-      borderWidth: {
-        1: "1px",
-      },
     },
   },
   plugins: [],

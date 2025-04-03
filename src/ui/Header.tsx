@@ -8,7 +8,7 @@ export default function Header() {
       <h1 className="text-h2 font-bold text-primary">PravaCijena</h1>
       <form
         action=""
-        className="flex flex-1 gap-3 rounded-xl border-1 border-foreground p-4 shadow-md transition focus-within:border-primary focus-within:ring-2 focus-within:ring-primary"
+        className="flex flex-1 gap-3 rounded-xl border border-foreground p-4 shadow-md transition focus-within:border-primary focus-within:ring-2 focus-within:ring-primary"
       >
         <SearchIcon className="h-6 w-6 text-primary" />
         <div className="border-l-2 border-caption" />

@@ -26,10 +26,23 @@ h1 {
   @apply text-h1 font-bold;
 }
 
+h2 {
+  @apply text-h2 font-bold;
+}
+
 h3 {
-  @apply text-h3 font-semibold
+  @apply text-h3 font-semibold;
 }
 
 h5 {
-  @apply text-h5
+  @apply text-h5;
+}
+
+h6 {
+  @apply text-h6 font-medium;
+}
+
+/* Make element hidden cause it was affecting elements position in DOM */
+nextjs-portal {
+  display: none;
 }
