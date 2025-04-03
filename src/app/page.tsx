@@ -49,7 +49,7 @@ export default async function Home() {
                   alt={"Slika proizvoda"}
                   width={208}
                   height={208}
-                  className="object-contain drop-shadow-[5px_5px_10px_rgba(0,0,0,0.5)]"
+                  className="object-contain drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)]"
                 />
               </div>
               <h5>{product.name}</h5>

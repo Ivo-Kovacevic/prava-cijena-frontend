@@ -21,15 +21,15 @@ export default function Header() {
           className="h-full w-full bg-background text-h6 font-semibold text-caption caret-primary outline-none"
         />
       </form>
-      <Link href="#" className="text-h6 font-semibold">
+      <Link href="#" className="hidden text-h6 font-semibold md:block">
         Kategorije
       </Link>
-      <Link href="#">
+      <Link href="#" className="hidden md:block">
         <ShoppingCart className="h-5 w-5" />
       </Link>
       <Link
         href="#"
-        className="rounded-xl bg-primary px-8 py-4 text-background shadow-md"
+        className="hidden rounded-xl bg-primary px-8 py-4 text-background shadow-md md:block"
       >
         Prijavi se
       </Link>
