@@ -1,7 +1,19 @@
+import { API_URL } from "@/utils/config";
+import { log } from "console";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+async function getProducts() {
+  const res = await fetch(`${API_URL}/api/categories/mlijeko/products`);
+  if (!res.ok) throw new Error("Failed to fetch products");
+  const products = await res.json();
+
+  return products;
+}
+
+export default async function Home() {
+  const products = await getProducts();
+
   return (
     <main className="flex flex-col gap-40 px-10">
       <section className="flex items-center">
@@ -31,7 +43,6 @@ export default function Home() {
 
       <section>
         <h3>Istaknuti proizvodi</h3>
-        
       </section>
 
       <section>
