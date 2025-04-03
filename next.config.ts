@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'dukatshop.hr',
+        hostname: 'res.cloudinary.com',
         port: '',
         pathname: '/**',
         search: '',

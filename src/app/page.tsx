@@ -10,8 +10,8 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col gap-40 px-10">
-      <section className="flex items-center">
-        <article className="flex w-1/2 flex-col gap-5">
+      <section className="flex flex-col items-center gap-5 xl:flex-row">
+        <article className="flex w-full flex-col gap-5 xl:w-1/2">
           <h1 className="bg-gradient-to-r from-lime-800 to-lime-600 bg-clip-text text-transparent">
             Pregled cijena svih proizvoda, <br />
             iz svih trgovina, <br />
@@ -30,25 +30,26 @@ export default async function Home() {
             </Link>
           </div>
         </article>
-        <article className="m-auto">
+        <article className="m-auto w-full xl:w-1/2">
           <Image src="/hero-image.png" width={814} height={434} alt={""} />
         </article>
       </section>
 
       <section>
         <h3>Istaknuti proizvodi</h3>
-        <div className="grid grid-cols-5 gap-5">
+        <div className="grid grid-cols-2 gap-5 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {products.map((product) => (
             <article
               key={product.id}
               className="flex flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4"
             >
-              <div className="flex justify-center">
+              <div className="flex h-52 justify-center">
                 <Image
-                  src={product.imageUrl}
+                  src={`https://res.cloudinary.com/dqbe0apqn/image/upload/v1743715539/${product.slug}`}
                   alt={"Slika proizvoda"}
-                  width={175}
-                  height={200}
+                  width={208}
+                  height={208}
+                  className="object-contain drop-shadow-[5px_5px_10px_rgba(0,0,0,0.5)]"
                 />
               </div>
               <h5>{product.name}</h5>

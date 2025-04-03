@@ -14,7 +14,6 @@ export async function getProducts() {
     
     const data = await res.json();
     const products = data["$values"];
-    console.log(products);
 
     return products;
   } catch (error) {
