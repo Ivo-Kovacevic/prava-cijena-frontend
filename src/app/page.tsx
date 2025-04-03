@@ -30,8 +30,14 @@ export default async function Home() {
             </Link>
           </div>
         </article>
-        <article className="m-auto w-full xl:w-1/2">
-          <Image src="/hero-image.png" width={814} height={434} alt={""} />
+        <article className="w-full xl:w-1/2">
+          <Image
+            src="/hero-image.png"
+            width={814}
+            height={434}
+            alt={""}
+            className="w-full"
+          />
         </article>
       </section>
 
