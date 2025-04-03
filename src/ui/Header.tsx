@@ -4,21 +4,21 @@ import ShoppingCart from "./icons/ShoppingCart";
 
 export default function Header() {
   return (
-    <header className="flex items-center gap-10 p-5">
-      <h1 className="text-primary text-h2 font-bold">PravaCijena</h1>
+    <header className="flex items-center gap-10 px-10 py-5">
+      <h1 className="text-h2 font-bold text-primary">PravaCijena</h1>
       <form
         action=""
-        className="border-1 focus-within:border-primary focus-within:ring-primary flex flex-1 gap-3 rounded-xl border-foreground p-4 shadow-md transition focus-within:ring-2"
+        className="flex flex-1 gap-3 rounded-xl border-1 border-foreground p-4 shadow-md transition focus-within:border-primary focus-within:ring-2 focus-within:ring-primary"
       >
-        <SearchIcon className="text-primary h-6 w-6" />
-        <div className="border-caption border-l-2" />
+        <SearchIcon className="h-6 w-6 text-primary" />
+        <div className="border-l-2 border-caption" />
         <input
           type="text"
           id="search"
           name="search"
           aria-label="Search"
           placeholder="Pretraži proizvode"
-          className="text-caption caret-primary text-h6 h-full w-full bg-background font-semibold outline-none"
+          className="h-full w-full bg-background text-h6 font-semibold text-caption caret-primary outline-none"
         />
       </form>
       <Link href="#" className="text-h6 font-semibold">
@@ -29,7 +29,7 @@ export default function Header() {
       </Link>
       <Link
         href="#"
-        className="bg-primary rounded-xl px-8 py-4 text-background shadow-md"
+        className="rounded-xl bg-primary px-8 py-4 text-background shadow-md"
       >
         Prijavi se
       </Link>

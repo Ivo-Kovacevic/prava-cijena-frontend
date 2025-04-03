@@ -21,3 +21,15 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+h1 {
+  @apply text-h1 font-bold;
+}
+
+h3 {
+  @apply text-h3 font-semibold
+}
+
+h5 {
+  @apply text-h5
+}
