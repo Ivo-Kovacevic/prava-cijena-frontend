@@ -1,5 +1,3 @@
-import { UUID } from "crypto"
-
 export type Product = {
     id: string,
     name: string,

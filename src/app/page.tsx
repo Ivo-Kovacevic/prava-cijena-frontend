@@ -38,7 +38,7 @@ export default async function Home() {
       <section>
         <h3>Istaknuti proizvodi</h3>
         <div className="grid grid-cols-5 gap-5">
-          {products.map((product, i) => (
+          {products.map((product) => (
             <article
               key={product.id}
               className="flex flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4"
