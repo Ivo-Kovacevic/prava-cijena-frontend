@@ -1,9 +1,9 @@
 "use server";
 
+import { ProductType } from "@/@types/api-types";
 import { API_URL } from "@/utils/config";
 
 export async function getProducts() {
-  try {
     const res = await fetch(
       `${API_URL}/api/categories/mlijeko/products?limit=10`,
     );
@@ -13,10 +13,7 @@ export async function getProducts() {
     }
     
     const data = await res.json();
-    const products = data["$values"];
+    const products: ProductType[] = data["$values"];
 
     return products;
-  } catch (error) {
-    console.log(error);
-  }
 }

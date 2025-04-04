@@ -16,7 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} flex flex-col gap-40 antialiased`}>
+      <body
+        className={`${poppins.className} flex flex-col gap-14 antialiased md:gap-40`}
+      >
         <Header />
         {children}
         <Footer />

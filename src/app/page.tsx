@@ -1,16 +1,16 @@
 "use server";
 
-import { Product } from "@/@types/api-types";
 import Image from "next/image";
 import Link from "next/link";
 import { getProducts } from "./actions";
+import Product from "@/ui/Product";
 
 export default async function Home() {
-  const products: Product[] = await getProducts();
+  const products = await getProducts();
 
   return (
-    <main className="flex flex-col gap-40 px-10">
-      <section className="flex flex-col items-center gap-5 xl:flex-row">
+    <main className="flex flex-col gap-40">
+      <section className="flex flex-col items-center gap-5 px-4 md:px-10 xl:flex-row">
         <article className="flex w-full flex-col gap-5 xl:w-1/2">
           <h1 className="bg-gradient-to-r from-lime-800 to-lime-600 bg-clip-text text-transparent">
             Pregled cijena svih proizvoda, <br />
@@ -30,7 +30,7 @@ export default async function Home() {
             </Link>
           </div>
         </article>
-        <article className="w-full xl:w-1/2">
+        <article className="w-full xl:w-1/2 hidden md:block">
           <Image
             src="/hero-image.png"
             width={814}
@@ -41,42 +41,17 @@ export default async function Home() {
         </article>
       </section>
 
-      <section>
-        <h3>Istaknuti proizvodi</h3>
-        <div className="grid grid-cols-2 gap-5 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+      <section className="flex flex-col space-y-4">
+        <h3 className="px-4 md:px-10">Istaknuti proizvodi</h3>
+        <div className="flex pb-4 gap-5 overflow-x-auto px-4 md:grid md:grid-cols-2 md:px-10 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {products.map((product) => (
-            <article
-              key={product.id}
-              className="flex flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4"
-            >
-              <div className="flex h-52 justify-center">
-                <Image
-                  src={`https://res.cloudinary.com/dqbe0apqn/image/upload/v1743715539/${product.slug}`}
-                  alt={"Slika proizvoda"}
-                  width={208}
-                  height={208}
-                  className="object-contain drop-shadow-[2px_2px_4px_rgba(0,0,0,0.5)]"
-                />
-              </div>
-              <h5>{product.name}</h5>
-              <h6 className="text-caption">7 trgovina</h6>
-              <div className="mt-auto flex items-center">
-                <h2 className="m-auto text-primary">1,02 €</h2>
-
-                <Link
-                  href="#"
-                  className="mr-0 rounded-lg bg-lime-800 bg-opacity-20 px-6 py-3 text-primary transition hover:bg-opacity-30"
-                >
-                  <h6>Pregledaj</h6>
-                </Link>
-              </div>
-            </article>
+            <Product product={product} />
           ))}
         </div>
       </section>
 
       <section>
-        <h3>Glavne kategorije</h3>
+        <h3 className="px-4 md:px-10">Glavne kategorije</h3>
       </section>
     </main>
   );
