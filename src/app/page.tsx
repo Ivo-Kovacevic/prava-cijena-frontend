@@ -45,7 +45,7 @@ export default async function Home() {
         <h3 className="px-4 md:px-10">Istaknuti proizvodi</h3>
         <div className="flex pb-4 gap-5 overflow-x-auto px-4 md:grid md:grid-cols-2 md:px-10 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {products.map((product) => (
-            <Product product={product} />
+            <Product key={product.id} product={product} />
           ))}
         </div>
       </section>
