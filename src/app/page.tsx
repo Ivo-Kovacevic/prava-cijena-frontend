@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getProducts } from "./actions";
 import Product from "@/ui/Product";
+import SeeMore from "@/ui/SeeMore";
 
 export default async function Home() {
   const products = await getProducts();
@@ -30,7 +31,7 @@ export default async function Home() {
             </Link>
           </div>
         </article>
-        <article className="w-full xl:w-1/2 hidden md:block">
+        <article className="hidden w-full xl:block xl:w-1/2">
           <Image
             src="/hero-image.png"
             width={814}
@@ -43,15 +44,17 @@ export default async function Home() {
 
       <section className="flex flex-col space-y-4">
         <h3 className="px-4 md:px-10">Istaknuti proizvodi</h3>
-        <div className="flex pb-4 gap-5 overflow-x-auto px-4 md:grid md:grid-cols-2 md:px-10 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        <div className="flex gap-5 overflow-x-auto px-4 pb-4 md:grid md:grid-cols-2 md:px-10 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {products.map((product) => (
             <Product key={product.id} product={product} />
           ))}
         </div>
+        <SeeMore text="Pogledaj više" />
       </section>
 
       <section>
         <h3 className="px-4 md:px-10">Glavne kategorije</h3>
+        <SeeMore text="Pogledaj sve kategorije" />
       </section>
     </main>
   );

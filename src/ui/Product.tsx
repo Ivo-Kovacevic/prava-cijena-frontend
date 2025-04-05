@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Product({ product }: { product: ProductType }) {
   return (
-    <article className="flex min-w-80 flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4">
+    <article className="flex min-w-80 flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4 md:min-w-0">
       <div className="flex h-52 justify-center">
         <Image
           src={`https://res.cloudinary.com/dqbe0apqn/image/upload/v1743715539/${product.slug}`}
@@ -17,7 +17,7 @@ export default function Product({ product }: { product: ProductType }) {
       <h5>{product.name}</h5>
       <h6 className="text-caption">7 trgovina</h6>
       <div className="mt-auto flex items-center">
-        <h2 className="m-auto text-primary">1,02 €</h2>
+        <h2 className="m-auto text-primary">{product.lowestPrice} €</h2>
 
         <Link
           href="#"
