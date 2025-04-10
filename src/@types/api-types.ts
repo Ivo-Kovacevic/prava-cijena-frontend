@@ -8,3 +8,14 @@ export type ProductType = {
     createdAt: Date,
     updatedAt: Date
 }
+
+export type CategoryType = {
+    id: string,
+    name: string,
+    slug: string,
+    imageUrl: string,
+    parentCategoryId: string,
+    subcategories: CategoryType[],
+    createdAt: Date,
+    updatedAt: Date
+}

@@ -6,11 +6,11 @@ import { getProducts } from "./actions";
 import Product from "@/ui/Product";
 import SeeMore from "@/ui/SeeMore";
 
-export default async function Home() {
+export default async function Page() {
   const products = await getProducts();
 
   return (
-    <main className="flex flex-col gap-40">
+    <main className="flex flex-col gap-40 py-32">
       <section className="flex flex-col items-center gap-5 px-4 md:px-10 xl:flex-row">
         <article className="flex w-full flex-col gap-5 xl:w-1/2">
           <h1 className="bg-gradient-to-r from-lime-800 to-lime-600 bg-clip-text text-transparent">
