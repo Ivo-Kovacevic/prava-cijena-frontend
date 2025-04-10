@@ -17,8 +17,8 @@ export default async function Page() {
 
       <section className="flex flex-col gap-y-5">
         {categories.map((category) => (
-          <div className="flex gap-x-5">
-            <Category key={category.id} category={category} />
+          <div key={category.id} className="flex gap-x-5">
+            <Category category={category} />
             <VerticalLine className="my-8 opacity-50" />
             <div className="flex gap-x-5 overflow-x-auto rounded-xl">
               {category.subcategories.map((subcategory) => (
