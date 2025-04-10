@@ -1,3 +1,5 @@
+"use server";
+
 import Category from "@/ui/Category";
 import { getCategories } from "./actions";
 import VerticalLine from "@/ui/VerticalLine";
