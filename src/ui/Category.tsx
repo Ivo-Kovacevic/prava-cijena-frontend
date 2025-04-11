@@ -1,13 +1,24 @@
 import { CategoryType } from "@/@types/api-types";
 import Link from "next/link";
+import Svg from "./Svg";
 
 export default function Category({ category }: { category: CategoryType }) {
   return (
-    <article className="aspect-square min-w-72 rounded-xl bg-blue-200">
+    <article
+      className="aspect-square h-72 rounded-xl"
+      style={{ backgroundColor: `${category.hexColor}20` }}
+    >
       <Link
         href="#"
-        className="flex h-full w-full items-center justify-center rounded-xl"
+        className="flex h-full w-full flex-col items-center justify-center rounded-xl p-5 text-center"
       >
+        {category.imageUrl && (
+          <Svg
+            svgUrl={category.imageUrl}
+            color={category.hexColor}
+            size={128}
+          />
+        )}
         <h4>{category.name}</h4>
       </Link>
     </article>
