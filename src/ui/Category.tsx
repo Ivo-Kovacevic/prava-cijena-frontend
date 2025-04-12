@@ -5,11 +5,11 @@ import Svg from "./Svg";
 export default function Category({ category }: { category: CategoryType }) {
   return (
     <article
-      className="aspect-square h-72 rounded-xl"
+      className="group aspect-square h-48 rounded-xl transition lg:h-60 xl:h-72"
       style={{ backgroundColor: `${category.hexColor}20` }}
     >
       <Link
-        href="#"
+        href={`kategorije/${category.slug}`}
         className="flex h-full w-full flex-col items-center justify-center rounded-xl p-5 text-center"
       >
         {category.imageUrl && (

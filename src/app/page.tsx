@@ -2,12 +2,18 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { getProducts } from "./actions";
 import Product from "@/ui/Product";
 import SeeMore from "@/ui/SeeMore";
+import { getCategories, getProducts } from "@/lib/actions";
+import Category from "@/ui/Category";
 
 export default async function Page() {
-  const products = await getProducts();
+  const products = await getProducts("mlijeko", 10);
+  const categories = await getCategories();
+
+  if (products.error || categories.error) {
+    return <h1 className="text-center">Greška pri dohvaćanju podataka.</h1>;
+  }
 
   return (
     <main className="flex flex-col gap-40 py-32">
@@ -42,18 +48,23 @@ export default async function Page() {
         </article>
       </section>
 
-      <section className="flex flex-col space-y-4">
+      <section className="flex flex-col gap-y-5">
         <h3 className="px-4 md:px-10">Istaknuti proizvodi</h3>
-        <div className="flex gap-5 overflow-x-auto px-4 pb-4 md:grid md:grid-cols-2 md:px-10 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-          {products.map((product) => (
+        <div className="flex gap-5 overflow-x-auto px-4 pb-4 sm:grid sm:grid-cols-2 sm:px-10 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+          {products.data.map((product) => (
             <Product key={product.id} product={product} />
           ))}
         </div>
         <SeeMore text="Pogledaj više" />
       </section>
 
-      <section>
+      <section className="flex flex-col gap-y-5">
         <h3 className="px-4 md:px-10">Glavne kategorije</h3>
+        <div className="flex gap-x-5 overflow-x-auto px-4 pb-4 md:px-10">
+          {categories.data.map((category) => (
+            <Category key={category.id} category={category} />
+          ))}
+        </div>
         <SeeMore text="Pogledaj sve kategorije" />
       </section>
     </main>

@@ -1,11 +1,15 @@
 "use server";
 
+import { getCategories } from "@/lib/actions";
 import Category from "@/ui/Category";
-import { getCategories } from "./actions";
 import VerticalLine from "@/ui/VerticalLine";
 
 export default async function Page() {
   const categories = await getCategories();
+
+  if (categories.error) {
+    return <h1 className="text-center">Greška pri dohvaćanju podataka.</h1>;
+  }
 
   return (
     <main className="mb-32 flex flex-col gap-5 px-4 md:px-10">
@@ -18,10 +22,12 @@ export default async function Page() {
       </section>
 
       <section className="flex flex-col gap-y-5">
-        {categories.map((category) => (
+        {categories.data.map((category) => (
           <div key={category.id} className="flex gap-x-5">
             <Category category={category} />
+
             <VerticalLine className="my-8 opacity-50" />
+
             <div className="flex gap-x-5 overflow-x-auto rounded-xl">
               {category.subcategories.map((subcategory) => (
                 <Category key={subcategory.id} category={subcategory} />
