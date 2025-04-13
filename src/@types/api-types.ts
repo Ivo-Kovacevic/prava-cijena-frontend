@@ -27,6 +27,16 @@ export type LabelType = {
   name: string;
   slug: string;
   categoryId: string;
+  values: ValueType[];
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type ValueType = {
+  id: string;
+  name: string;
+  slug: string;
+  labelId: string;
   createdAt: Date;
   updatedAt: Date;
 };

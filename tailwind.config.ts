@@ -23,6 +23,10 @@ export default {
         h5: "1.125rem",
         h6: "1rem",
       },
+      borderRadius: {
+        outer: "0.75rem",
+        inner: "0.375rem",
+      },
     },
   },
   plugins: [],
