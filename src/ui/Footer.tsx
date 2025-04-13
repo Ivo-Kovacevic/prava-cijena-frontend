@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="flex flex-col justify-between gap-20 bg-primary px-10 py-20 text-background md:flex-row">
+    <footer className="flex flex-col justify-between gap-20 bg-primary px-10 py-20 text-background md:flex-row mt-auto">
       <article className="flex flex-col gap-4">
         <h3>Informacije</h3>
         <p>Kontakt</p>

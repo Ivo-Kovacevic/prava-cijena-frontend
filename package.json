@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "prettier": {
+    "printWidth": 100,
     "plugins": [
       "prettier-plugin-tailwindcss"
     ]

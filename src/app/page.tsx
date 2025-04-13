@@ -4,16 +4,18 @@ import Image from "next/image";
 import Link from "next/link";
 import Product from "@/ui/Product";
 import SeeMore from "@/ui/SeeMore";
-import { getCategories, getProducts } from "@/lib/actions";
+import { getCategories, getStaticProducts } from "@/lib/actions";
 import Category from "@/ui/Category";
 
 export default async function Page() {
-  const products = await getProducts("mlijeko", 10);
-  const categories = await getCategories();
+  const products = await getStaticProducts();
+  const categories =
+    await getCategories();
 
   if (products.error || categories.error) {
-    return <h1 className="text-center">Greška pri dohvaćanju podataka.</h1>;
+    return <h2 className="text-center mt-14">Greška pri dohvaćanju podataka.</h2>;
   }
+
 
   return (
     <main className="flex flex-col gap-40 py-32">
@@ -50,7 +52,8 @@ export default async function Page() {
 
       <section className="flex flex-col gap-y-5">
         <h3 className="px-4 md:px-10">Istaknuti proizvodi</h3>
-        <div className="flex gap-5 overflow-x-auto px-4 pb-4 sm:grid sm:grid-cols-2 sm:px-10 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        <div
+          className="flex gap-5 overflow-x-auto px-4 pb-4 sm:grid sm:grid-cols-2 sm:px-10 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {products.data.map((product) => (
             <Product key={product.id} product={product} />
           ))}

@@ -1,15 +1,11 @@
 import Link from "next/link";
 import VerticalLine from "./VerticalLine";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faMagnifyingGlass,
-  faShoppingCart,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faMagnifyingGlass, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between gap-10 px-10 py-5">
+    <header className="flex items-center justify-between gap-10 px-4 py-5 md:px-10">
       <Link href="/" className="text-h2 font-bold text-primary">
         PravaCijena
       </Link>
@@ -23,10 +19,7 @@ export default function Header() {
           action=""
           className="flex flex-1 items-center gap-3 rounded-xl border border-foreground p-4 shadow-md transition focus-within:border-primary focus-within:ring-2 focus-within:ring-primary"
         >
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className="text-2xl text-primary"
-          />
+          <FontAwesomeIcon icon={faMagnifyingGlass} className="text-2xl text-primary" />
           <VerticalLine className="h-6" />
           <input
             type="text"
@@ -37,10 +30,7 @@ export default function Header() {
             className="h-full w-full bg-background text-h6 font-semibold text-caption caret-primary outline-none"
           />
         </form>
-        <Link
-          href="/kategorije"
-          className="hidden text-h6 font-semibold md:block"
-        >
+        <Link href="/kategorije" className="hidden text-h6 font-semibold md:block">
           Kategorije
         </Link>
         <Link href="#" className="flex items-center">

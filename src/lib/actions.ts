@@ -5,19 +5,21 @@ import { API_URL } from "@/utils/config";
 import { tryCatch } from "@/utils/try-catch";
 
 export async function getCategory(category: string) {
-  const result = await tryCatch<CategoryType>(
-    fetch(`${API_URL}/api/categories/${category}`).then((res) => res.json()),
-  )
-
-  return result;
+  return await tryCatch<CategoryType>(
+    fetch(`${API_URL}/api/categories/${category}`, { cache: "no-store" }).then((res) => res.json()),
+  );
 }
 
 export async function getCategories() {
-  const result = await tryCatch<CategoryType[]>(
-    fetch(`${API_URL}/api/categories/`).then((res) => res.json()),
+  return await tryCatch<CategoryType[]>(
+    fetch(`${API_URL}/api/categories/`, { cache: "no-store" }).then((res) => res.json()),
   );
+}
 
-  return result;
+export async function getStaticProducts() {
+  return await tryCatch<ProductType[]>(
+    fetch(`${API_URL}/api/categories/mlijeko/products?limit=10`).then((res) => res.json()),
+  );
 }
 
 export async function getProducts(
@@ -25,11 +27,17 @@ export async function getProducts(
   limit: number = 80,
   page: number = 1,
 ) {
-  const result = await tryCatch<ProductType[]>(
-    fetch(`${API_URL}/api/categories/${category}/products?page=${page}&limit=${limit}`).then((res) =>
+  return await tryCatch<ProductType[]>(
+    fetch(`${API_URL}/api/categories/${category}/products?page=${page}&limit=${limit}`, {
+      cache: "no-store",
+    }).then((res) => res.json()),
+  );
+}
+
+export async function getProduct(productSlug: string) {
+  return await tryCatch<ProductType>(
+    fetch(`${API_URL}/api/products/${productSlug}`, { cache: "no-store" }).then((res) =>
       res.json(),
     ),
   );
-
-  return result;
 }

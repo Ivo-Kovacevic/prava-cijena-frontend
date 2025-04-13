@@ -7,13 +7,13 @@ import Filter from "@/ui/icons/Filter";
 import Product from "@/ui/Product";
 
 type Params = {
-  slug: string;
+  categorySlug: string;
 };
 
 export default async function Page({ params }: { params: Promise<Params> }) {
-  const { slug } = await params;
-  const products = await getProducts(slug);
-  const category = await getCategory(slug);
+  const { categorySlug } = await params;
+  const products = await getProducts(categorySlug);
+  const category = await getCategory(categorySlug);
 
   if (category.error || products.error) {
     return <h1 className="text-center">Greška pri dohvaćanju podataka.</h1>;

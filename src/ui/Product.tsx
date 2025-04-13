@@ -12,9 +12,9 @@ export default function Product({ product }: { product: ProductType }) {
           <Image
             src={product.imageUrl}
             alt={`Slika proizvoda ${product.name}`}
-            width={208}
-            height={208}
-            className="object-contain drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)]"
+            width={200}
+            height={200}
+            className="aspect-square h-[200px] object-contain drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)]"
           />
         ) : (
           <FontAwesomeIcon icon={faQuestion} className="m-auto text-8xl" />
@@ -26,7 +26,7 @@ export default function Product({ product }: { product: ProductType }) {
         <h2 className="m-auto text-primary">{product.lowestPrice} €</h2>
 
         <Link
-          href="#"
+          href={`/proizvod/${product.slug}`}
           className="mr-0 rounded-lg bg-lime-800 bg-opacity-20 px-6 py-3 text-primary transition hover:bg-opacity-30"
         >
           <h6>Pregledaj</h6>
