@@ -18,7 +18,6 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   if (category.error || products.error) {
     return <h1 className="text-center">Greška pri dohvaćanju podataka.</h1>;
   }
-  console.dir(category.data.labels);
 
   const numOfProducts = products.data.length;
 

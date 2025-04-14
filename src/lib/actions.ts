@@ -43,7 +43,7 @@ export async function getProduct(productSlug: string) {
 }
 
 export async function searchProducts(searchTerm: string) {
-  return await tryCatch<ProductType>(
+  return await tryCatch<ProductType[]>(
     fetch(`${API_URL}/api/products/search?searchTerm=${searchTerm}`, { cache: "no-store" }).then(
       (res) => res.json(),
     ),
