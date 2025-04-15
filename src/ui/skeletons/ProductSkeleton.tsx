@@ -1,6 +1,6 @@
 export default async function ProductSkeleton() {
   return (
-    <div className="flex h-[378px] min-w-80 animate-pulse flex-col gap-2 rounded-outer bg-gray-300 p-4 sm:min-w-0">
+    <div className="flex h-[390px] min-w-80 animate-pulse flex-col gap-2 rounded-outer bg-gray-300 p-4 sm:min-w-0">
       <div className="flex h-[200px] justify-center">
         <div className="h-200 aspect-square animate-pulse rounded-inner bg-gray-400" />
       </div>

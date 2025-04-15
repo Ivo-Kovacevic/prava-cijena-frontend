@@ -6,7 +6,7 @@ import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 
 export default function Product({ product }: { product: ProductType }) {
   return (
-    <article className="flex h-[378px] min-w-80 flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4 sm:min-w-0">
+    <article className="flex h-[390px] min-w-80 flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4 sm:min-w-0">
       <div className="flex h-[200px] justify-center">
         {product.imageUrl ? (
           <Image
