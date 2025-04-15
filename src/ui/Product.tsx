@@ -6,8 +6,8 @@ import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 
 export default function Product({ product }: { product: ProductType }) {
   return (
-    <article className="flex min-w-80 flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4 sm:min-w-0">
-      <div className="flex h-52 justify-center">
+    <article className="flex h-[378px] min-w-80 flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4 sm:min-w-0">
+      <div className="flex h-[200px] justify-center">
         {product.imageUrl ? (
           <Image
             src={product.imageUrl}
@@ -20,14 +20,14 @@ export default function Product({ product }: { product: ProductType }) {
           <FontAwesomeIcon icon={faQuestion} className="m-auto text-8xl" />
         )}
       </div>
-      <h5>{product.name}</h5>
+      <h5 className="line-clamp-2">{product.name}</h5>
       <h6 className="text-caption">7 trgovina</h6>
       <div className="mt-auto flex items-center">
         <h2 className="m-auto text-primary">{product.lowestPrice} €</h2>
 
         <Link
           href={`/proizvod/${product.slug}`}
-          className="mr-0 rounded-lg bg-lime-800 bg-opacity-20 px-6 py-3 text-primary transition hover:bg-opacity-30"
+          className="mr-0 h-[50px] w-[125px] rounded-lg bg-lime-800 bg-opacity-20 px-6 py-3 text-primary transition hover:bg-opacity-30"
         >
           <h6>Pregledaj</h6>
         </Link>

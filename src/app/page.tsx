@@ -17,7 +17,7 @@ export default async function Page() {
 
   return (
     <main className="flex flex-col gap-40 py-32">
-      <section className="flex flex-col items-center gap-5 px-4 md:px-10 xl:flex-row">
+      <section className="flex h-[400px] items-center gap-5 px-4 md:h-[520px] md:px-10">
         <article className="flex w-full flex-col gap-5 xl:w-1/2">
           <h1 className="bg-gradient-to-r from-lime-800 to-lime-600 bg-clip-text text-transparent">
             Pregled cijena svih proizvoda, <br />
@@ -44,7 +44,7 @@ export default async function Page() {
 
       <section className="flex flex-col gap-y-5">
         <h3 className="px-4 md:px-10">Istaknuti proizvodi</h3>
-        <div className="flex gap-5 overflow-x-auto px-4 pb-4 sm:grid sm:grid-cols-2 sm:px-10 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        <div className="flex gap-5 overflow-x-auto px-4 pb-4 sm:grid sm:grid-cols-2 md:px-10 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {products.data.map((product) => (
             <Product key={product.id} product={product} />
           ))}

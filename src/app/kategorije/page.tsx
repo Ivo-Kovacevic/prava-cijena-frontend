@@ -16,8 +16,8 @@ export default async function Page() {
       <section>
         <h3>Pregled svih kategorija proizvoda</h3>
         <p>
-          Na ovoj stranici možete pogledati sve glavne kategorije s lijeve
-          strane te njihove podkategorije s desne strane.
+          Na ovoj stranici možete pogledati sve glavne kategorije s lijeve strane te njihove
+          podkategorije s desne strane.
         </p>
       </section>
 
