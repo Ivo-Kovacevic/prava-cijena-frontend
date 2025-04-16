@@ -73,7 +73,7 @@ export default function Search() {
       {showResults && products.length > 0 && (
         <div className="relative">
           <ul
-            className="absolute top-1 flex w-full flex-col gap-4 rounded-outer border border-caption bg-background p-4"
+            className="absolute top-1 z-10 flex w-full flex-col gap-4 rounded-outer border border-caption bg-background p-4"
             onClick={() => inputRef.current?.focus()}
           >
             {products.map((product) => (

@@ -9,6 +9,16 @@ export type ProductType = {
   updatedAt: Date;
 };
 
+export type StoreType = {
+  id: string;
+  name: string;
+  slug: string;
+  storeUrl: string;
+  imageUrl: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export type CategoryType = {
   id: string;
   name: string;
@@ -37,6 +47,16 @@ export type ValueType = {
   name: string;
   slug: string;
   labelId: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type ProductStoreType = {
+  id: string;
+  productId: string;
+  storeId: string;
+  productUrl: string;
+  latestPrice: number;
   createdAt: Date;
   updatedAt: Date;
 };

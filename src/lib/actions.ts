@@ -1,6 +1,6 @@
 "use server";
 
-import { CategoryType, ProductType } from "@/@types/api-types";
+import { CategoryType, ProductStoreType, ProductType, StoreType } from "@/@types/api-types";
 import { API_URL } from "@/utils/config";
 import { tryCatch } from "@/utils/try-catch";
 
@@ -37,6 +37,20 @@ export async function getProducts(
 export async function getProduct(productSlug: string) {
   return await tryCatch<ProductType>(
     fetch(`${API_URL}/api/products/${productSlug}`, { cache: "no-store" }).then((res) =>
+      res.json(),
+    ),
+  );
+}
+
+export async function getStore(storeId: string) {
+  return await tryCatch<StoreType>(
+    fetch(`${API_URL}/api/stores/${storeId}`, { cache: "no-store" }).then((res) => res.json()),
+  );
+}
+
+export async function getProductStores(productId: string) {
+  return await tryCatch<ProductStoreType[]>(
+    fetch(`${API_URL}/api/product-stores/${productId}`, { cache: "no-store" }).then((res) =>
       res.json(),
     ),
   );
