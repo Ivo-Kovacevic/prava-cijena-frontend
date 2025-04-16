@@ -14,8 +14,8 @@ export default function Search() {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [showResults, setShowResults] = useState(false);
 
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSearch = useDebouncedCallback(async (term: string) => {
     if (term.length < 3) {

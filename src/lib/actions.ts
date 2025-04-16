@@ -10,9 +10,9 @@ export async function getCategory(category: string) {
   );
 }
 
-export async function getCategories() {
+export async function getStaticCategories() {
   return await tryCatch<CategoryType[]>(
-    fetch(`${API_URL}/api/categories/`, { cache: "no-store" }).then((res) => res.json()),
+    fetch(`${API_URL}/api/categories/`).then((res) => res.json()),
   );
 }
 

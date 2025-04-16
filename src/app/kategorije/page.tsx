@@ -1,11 +1,11 @@
 "use server";
 
-import { getCategories } from "@/lib/actions";
+import { getStaticCategories } from "@/lib/actions";
 import Category from "@/ui/Category";
 import VerticalLine from "@/ui/VerticalLine";
 
 export default async function Page() {
-  const categories = await getCategories();
+  const categories = await getStaticCategories();
 
   if (categories.error) {
     return <h1 className="text-center">Greška pri dohvaćanju podataka.</h1>;

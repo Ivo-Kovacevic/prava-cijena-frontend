@@ -4,12 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Product from "@/ui/Product";
 import SeeMore from "@/ui/SeeMore";
-import { getCategories, getStaticProducts } from "@/lib/actions";
+import { getStaticCategories, getStaticProducts } from "@/lib/actions";
 import Category from "@/ui/Category";
 
 export default async function Page() {
   const products = await getStaticProducts();
-  const categories = await getCategories();
+  const categories = await getStaticCategories();
 
   if (products.error || categories.error) {
     return <h2 className="mt-14 text-center">Greška pri dohvaćanju podataka.</h2>;

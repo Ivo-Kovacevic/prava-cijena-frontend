@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Search from "@/ui/header/Search";
+import MobileNavigation from "@/ui/header/MobileNavigation";
 
 export default function Header() {
   return (
@@ -10,10 +11,12 @@ export default function Header() {
         PravaCijena
       </Link>
 
+      {/* Mobile navigation */}
       <div className="lg:hidden">
-        <FontAwesomeIcon icon={faBars} className="text-h2" />
+        <MobileNavigation />
       </div>
 
+      {/* Desktop navigation */}
       <div className="hidden w-full items-center gap-10 lg:flex">
         <Search />
 
