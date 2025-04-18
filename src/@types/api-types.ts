@@ -5,6 +5,7 @@ export type ProductType = {
   lowestPrice: number;
   categoryId: string;
   imageUrl: string | null;
+  productStores: ProductStoreType[];
   createdAt: Date;
   updatedAt: Date;
 };
@@ -55,6 +56,7 @@ export type ProductStoreType = {
   id: string;
   productId: string;
   storeId: string;
+  store: StoreType;
   productUrl: string;
   latestPrice: number;
   createdAt: Date;
