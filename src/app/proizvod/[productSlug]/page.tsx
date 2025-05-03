@@ -35,7 +35,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
         {product.data.productStores.map((product) => (
           <article
             key={product.id}
-            className="grid h-[225px] grid-cols-2 rounded-outer border border-caption px-5 py-5 lg:grid-cols-3 lg:px-8 xl:px-14 2xl:px-20"
+            className="grid h-[225px] grid-cols-2 gap-5 rounded-outer border border-caption px-5 py-5 lg:grid-cols-3 lg:px-8 xl:px-14 2xl:px-20"
           >
             <div className="col-span-1 flex flex-col items-center justify-around lg:col-span-2 lg:flex-row">
               <a
