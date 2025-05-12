@@ -31,8 +31,8 @@ export default async function Page() {
           </h5>
           <div>
             <Link
-              href="#"
-              className="block w-fit rounded-xl bg-gradient-to-r from-lime-800 to-lime-600 px-8 py-4 text-background shadow-md"
+              href="/kategorije"
+              className="block w-fit rounded-xl bg-gradient-to-r from-lime-800 to-lime-600 px-8 py-4 text-background shadow-md transition hover:brightness-95"
             >
               Počni pretraživati
             </Link>
