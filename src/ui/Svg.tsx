@@ -4,16 +4,15 @@ interface SvgProps {
   size: number;
 }
 
-export default function Svg({ svgUrl, color, size }: SvgProps) {
+export default function Svg({ svgUrl, color }: SvgProps) {
   return (
     <div
-      className="aspect-square transition group-hover:-translate-y-1"
+      className="aspect-square h-12 transition group-hover:-translate-y-1 md:h-[72px] lg:h-24 xl:h-[120px]"
       style={{
         maskImage: `url(${svgUrl})`,
         WebkitMaskImage: `url(${svgUrl})`,
         maskSize: "contain",
         backgroundColor: color,
-        height: `${size}px`,
       }}
     />
   );

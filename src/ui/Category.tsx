@@ -5,7 +5,7 @@ import Svg from "./Svg";
 export default function Category({ category }: { category: CategoryType }) {
   return (
     <article
-      className="group aspect-square h-48 rounded-outer transition lg:h-60 xl:h-72"
+      className="group aspect-square h-36 rounded-outer transition md:h-48 lg:h-60 xl:h-72"
       style={{ backgroundColor: `${category.hexColor}20` }}
     >
       <Link
@@ -15,7 +15,7 @@ export default function Category({ category }: { category: CategoryType }) {
         {category.imageUrl && (
           <Svg svgUrl={category.imageUrl} color={category.hexColor} size={128} />
         )}
-        <h4>{category.name}</h4>
+        <h4 className="line-clamp-2">{category.name}</h4>
       </Link>
     </article>
   );
