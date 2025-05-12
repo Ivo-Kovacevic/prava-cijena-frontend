@@ -14,13 +14,13 @@ export default function ProductStore({ productStore }: { productStore: ProductSt
         <a
           href={productStore.store.storeUrl}
           target="_blank"
-          className="flex flex-1 items-center justify-center"
+          className="relative flex h-full w-full max-w-[250px] flex-1 items-center justify-center"
         >
           <Image
             src={productStore.store.imageUrl}
             alt={productStore.store.name}
-            width={250}
-            height={200}
+            fill={true}
+            className="object-contain"
           />
         </a>
         <div className="flex flex-1 items-center justify-center text-primary">
