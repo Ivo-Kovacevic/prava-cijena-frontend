@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Search from "@/ui/header/Search";
 import MobileNavigation from "@/ui/header/MobileNavigation";
+import Logo from "@/ui/icons/Logo";
 
 export default function Header() {
   return (
     <header className="flex items-center justify-between gap-10 px-4 py-5 md:px-10">
-      <Link href="/" className="text-h2 font-bold text-primary">
-        PravaCijena
+      <Link href="/">
+        <Logo className="h-10 lg:h-14" />
       </Link>
 
       {/* Mobile navigation */}

@@ -11,6 +11,9 @@ config.autoAddCss = false;
 export const metadata: Metadata = {
   title: "Prava Cijena",
   description: "Pronađi i usporedi cijene namirnica iz više trgovina",
+  icons: {
+    icon: "/images/favicon.ico",
+  },
 };
 
 export default function RootLayout({
