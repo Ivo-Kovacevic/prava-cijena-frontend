@@ -1,11 +1,12 @@
 "use server";
 
-import Image from "next/image";
 import Link from "next/link";
 import Product from "@/ui/Product";
 import SeeMore from "@/ui/SeeMore";
 import { getStaticCategories, getStaticProducts } from "@/lib/actions";
 import Category from "@/ui/Category";
+import dummyProductStores from "@/const/dummyProductStores";
+import ProductStore from "@/ui/product/ProductStore";
 
 export default async function Page() {
   const products = await getStaticProducts();
@@ -37,9 +38,11 @@ export default async function Page() {
             </Link>
           </div>
         </article>
-        <article className="hidden w-full xl:block xl:w-1/2">
-          <Image src="/hero-image.png" width={814} height={434} alt={""} className="w-full" />
-        </article>
+        <div className="hidden w-full flex-col gap-5 xl:flex xl:w-1/2">
+          {dummyProductStores.map((productStore) => (
+            <ProductStore key={productStore.id} productStore={productStore} />
+          ))}
+        </div>
       </section>
 
       <section className="flex flex-col gap-y-5">
