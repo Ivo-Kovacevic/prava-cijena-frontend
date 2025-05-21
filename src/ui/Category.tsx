@@ -10,12 +10,12 @@ export default function Category({ category }: { category: CategoryType }) {
     >
       <Link
         href={`kategorije/${category.slug}`}
-        className="flex h-full w-full flex-col items-center justify-center rounded-outer p-5 text-center"
+        className="flex h-full w-full flex-col items-center justify-center rounded-outer p-2 text-center md:p-5"
       >
         {category.imageUrl && (
           <Svg svgUrl={category.imageUrl} color={category.hexColor} size={128} />
         )}
-        <h4 className="line-clamp-2">{category.name}</h4>
+        <h4 className="line-clamp-2 lg:line-clamp-3">{category.name}</h4>
       </Link>
     </article>
   );

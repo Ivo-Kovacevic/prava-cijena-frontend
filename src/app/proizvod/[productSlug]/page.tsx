@@ -19,7 +19,6 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   // if (productStores.error) {
   //   return <h1 className="text-center">Greška pri dohvaćanju podataka.</h1>;
   // }
-  console.log(product.data.productStores);
 
   return (
     <main className="grid grid-cols-1 gap-y-5 px-4 md:px-10 lg:grid-cols-5 lg:gap-x-5">
@@ -34,8 +33,8 @@ export default async function Page({ params }: { params: Promise<Params> }) {
         <h4>{product.data.name}</h4>
       </section>
       <section className="col-span-3 flex flex-col gap-5">
-        {product.data.productStores.map((productStore) => (
-          <ProductStore key={productStore.id} productStore={productStore} />
+        {product.data.stores.map((store) => (
+          <ProductStore key={store.id} store={store} />
         ))}
       </section>
     </main>

@@ -21,7 +21,7 @@ export default function Product({ product }: { product: ProductType }) {
         )}
       </div>
       <h5 className="line-clamp-2">{product.name}</h5>
-      <h6 className="text-caption">7 trgovina</h6>
+      <h6 className="text-caption">{product.numberOfStores} trgovine</h6>
       <div className="mt-auto flex items-center">
         <h2 className="m-auto text-primary">{product.lowestPrice} €</h2>
 
