@@ -9,21 +9,26 @@ import { searchProducts } from "@/lib/actions";
 import { ProductType } from "@/@types/api-types";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Search() {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [showResults, setShowResults] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const pathname = usePathname();
 
   const handleSearch = useDebouncedCallback(async (term: string) => {
     if (term.length < 3) {
-      setProducts([]);
       return;
     }
 
+    setLoading(true);
     const result = await searchProducts(term);
+    setLoading(false);
+
     if (result.error) {
       setProducts([]);
       return;
@@ -31,6 +36,13 @@ export default function Search() {
     setProducts(result.data);
   }, 300);
 
+  // Close searchbar when navigating to other page
+  useEffect(() => {
+    setShowResults(false);
+    inputRef.current?.blur();
+  }, [pathname]);
+
+  // Close searchbar when clicking outside it
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (!containerRef.current?.contains(e.target as Node)) {
@@ -40,7 +52,7 @@ export default function Search() {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [pathname]);
 
   return (
     <div
@@ -65,7 +77,14 @@ export default function Search() {
           aria-label="Search"
           placeholder="Pretraži proizvode"
           className="h-full w-full bg-background text-h6 font-semibold text-caption caret-primary outline-none"
-          onChange={(e) => handleSearch(e.target.value)}
+          onChange={(e) => {
+            if (e.target.value.length < 3) {
+              setProducts([]);
+              return;
+            }
+            setLoading(true);
+            handleSearch(e.target.value);
+          }}
           onFocus={() => setShowResults(true)}
         />
       </form>
@@ -103,6 +122,22 @@ export default function Search() {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {showResults && loading && (
+        <div className="relative">
+          <div className="absolute top-1 z-10 flex h-[473px] w-full flex-col gap-4 rounded-outer border border-caption bg-background p-4">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div key={i} className="flex h-[75px] gap-5">
+                <div className="aspect-square h-[75px] animate-pulse rounded-inner bg-gray-300" />
+                <div>
+                  <div className="my-2 h-[25px] w-[120px] animate-pulse rounded-inner bg-gray-300" />
+                  <div className="h-[20px] w-[80px] animate-pulse rounded-inner bg-gray-300" />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>
