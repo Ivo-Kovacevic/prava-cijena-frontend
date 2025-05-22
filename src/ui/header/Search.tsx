@@ -57,7 +57,7 @@ export default function Search() {
   return (
     <div
       ref={containerRef}
-      className="flex flex-1 flex-col rounded-outer border border-foreground shadow-md"
+      className="flex w-full flex-1 flex-col rounded-outer border border-foreground shadow-md"
     >
       <form
         action=""

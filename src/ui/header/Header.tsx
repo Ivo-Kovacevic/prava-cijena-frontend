@@ -1,9 +1,7 @@
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import Search from "@/ui/header/Search";
 import MobileNavigation from "@/ui/header/MobileNavigation";
 import Logo from "@/ui/icons/Logo";
+import DesktopNavigation from "@/ui/header/DesktopNavigation";
 
 export default function Header() {
   return (
@@ -19,25 +17,7 @@ export default function Header() {
 
       {/* Desktop navigation */}
       <div className="hidden w-full items-center gap-10 lg:flex">
-        <Search />
-
-        <Link
-          href="/kategorije"
-          className="hidden text-h6 font-semibold transition hover:text-primary md:block"
-        >
-          Kategorije
-        </Link>
-
-        <Link href="#" className="flex items-center transition hover:text-primary">
-          <FontAwesomeIcon icon={faShoppingCart} className="text-xl" />
-        </Link>
-
-        <Link
-          href="#"
-          className="hidden rounded-xl bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-95 md:block"
-        >
-          Prijavi se
-        </Link>
+        <DesktopNavigation />
       </div>
     </header>
   );
