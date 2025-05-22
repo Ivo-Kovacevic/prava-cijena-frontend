@@ -1,11 +1,16 @@
 import { StoreType } from "@/@types/api-types";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowTrendUp } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faArrowTrendUp } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-export default function ProductStore({ store }: { store: StoreType }) {
-  console.dir(store);
+export default function ProductStore({
+  store,
+  productSlug,
+}: {
+  store: StoreType;
+  productSlug: string;
+}) {
   return (
     <article
       key={store.id}
@@ -20,7 +25,19 @@ export default function ProductStore({ store }: { store: StoreType }) {
           <Image src={store.imageUrl} alt={store.name} fill={true} className="object-contain" />
         </a>
         <div className="flex flex-1 items-center justify-center text-primary">
-          <h2 className="pl-5">{store.price} €</h2>
+          <h2 className="pl-5">
+            <Link
+              href={`/proizvod/${productSlug}/${store.slug}`}
+              className="group flex items-center gap-2"
+            >
+              {" "}
+              {store.price} €
+              <FontAwesomeIcon
+                icon={faArrowRight}
+                className="text-2xl transition group-hover:translate-x-1"
+              />
+            </Link>
+          </h2>
         </div>
       </div>
       <div className="flex flex-col items-end justify-center gap-5">

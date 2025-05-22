@@ -40,7 +40,7 @@ export default async function Page() {
         </article>
         <div className="hidden w-full flex-col gap-5 xl:flex xl:w-1/2">
           {dummyProductStores.map((store) => (
-            <ProductStore key={store.id} store={store} />
+            <ProductStore key={store.id} store={store} productSlug="" />
           ))}
         </div>
       </section>

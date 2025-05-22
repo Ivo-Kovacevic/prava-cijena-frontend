@@ -22,6 +22,15 @@ export type StoreType = {
   updatedAt: Date;
 };
 
+export type StoreLocationType = {
+  id: string;
+  city: string;
+  address: string;
+  locationProduct: ProductStoreType;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export type CategoryType = {
   id: string;
   name: string;
