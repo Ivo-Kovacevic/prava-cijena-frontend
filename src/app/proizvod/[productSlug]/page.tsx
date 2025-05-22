@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
   return (
     <main className="grid grid-cols-1 gap-y-5 px-4 md:px-10 lg:grid-cols-5 lg:gap-x-5">
-      <section className="col-span-1 flex w-full flex-col gap-5">
+      <section className="col-span-1 flex h-fit w-full flex-col justify-start gap-5">
         {product.data.imageUrl ? (
           <div className="flex h-[250px] w-full items-center justify-center">
             <Image src={product.data.imageUrl} alt={product.data.name} width={200} height={200} />
