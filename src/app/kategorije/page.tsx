@@ -3,12 +3,13 @@
 import { getStaticCategories } from "@/lib/actions";
 import Category from "@/ui/Category";
 import VerticalLine from "@/ui/VerticalLine";
+import GeneralError from "@/ui/icons/GeneralError";
 
 export default async function Page() {
   const categories = await getStaticCategories();
 
   if (categories.error) {
-    return <h1 className="text-center">Greška pri dohvaćanju podataka.</h1>;
+    return <GeneralError />;
   }
 
   return (

@@ -1,4 +1,5 @@
 import { getStoreLocations } from "@/lib/actions";
+import GeneralError from "@/ui/icons/GeneralError";
 
 type Params = {
   productSlug: string;
@@ -10,7 +11,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
   const storeLocations = await getStoreLocations(productSlug, storeSlug);
   if (storeLocations.error) {
-    return <h1 className="text-center">Greška pri dohvaćanju podataka.</h1>;
+    return <GeneralError />;
   }
 
   return (

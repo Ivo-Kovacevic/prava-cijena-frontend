@@ -1,24 +1,22 @@
 import { ProductType } from "@/@types/api-types";
 import Image from "next/image";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 
 export default function Product({ product }: { product: ProductType }) {
   return (
     <article className="flex h-[390px] min-w-80 flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4 sm:min-w-0">
       <div className="flex h-[200px] justify-center">
-        {product.imageUrl ? (
-          <Image
-            src={product.imageUrl}
-            alt={`Slika proizvoda ${product.name}`}
-            width={200}
-            height={200}
-            className="aspect-square h-[200px] object-contain drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)]"
-          />
-        ) : (
-          <FontAwesomeIcon icon={faQuestion} className="m-auto text-8xl" />
-        )}
+        <Image
+          src={
+            product.imageUrl
+              ? product.imageUrl
+              : "https://res.cloudinary.com/dqbe0apqn/image/upload/unknown.png"
+          }
+          alt={`Slika proizvoda ${product.name}`}
+          width={200}
+          height={200}
+          className="aspect-square h-[200px] object-contain drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)]"
+        />
       </div>
       <h5 className="line-clamp-2">{product.name}</h5>
       <h6 className="text-caption">{product.numberOfStores} trgovine</h6>

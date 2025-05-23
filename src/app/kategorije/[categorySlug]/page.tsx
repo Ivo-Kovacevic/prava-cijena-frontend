@@ -5,6 +5,7 @@ import Filters from "@/ui/category/Filters";
 import Subcategories from "@/ui/category/Subcategories";
 import Filter from "@/ui/icons/Filter";
 import Product from "@/ui/Product";
+import GeneralError from "@/ui/icons/GeneralError";
 
 type Params = {
   categorySlug: string;
@@ -16,7 +17,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const category = await getCategory(categorySlug);
 
   if (category.error || products.error) {
-    return <h1 className="text-center">Greška pri dohvaćanju podataka.</h1>;
+    return <GeneralError />;
   }
 
   const numOfProducts = products.data.length;

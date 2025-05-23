@@ -28,7 +28,7 @@ body {
 }
 
 h1 {
-    @apply text-[2rem] md:text-[3.5rem] font-bold;
+    @apply text-[2.2rem] md:text-[3.5rem] font-bold;
 }
 
 h2 {

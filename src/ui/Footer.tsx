@@ -1,10 +1,13 @@
 import Link from "next/link";
+import LogoOnPrimary from "@/ui/icons/LogoOnPrimary";
 
 export default function Footer() {
   return (
-    <footer className="mt-auto grid grid-cols-4 gap-10 bg-primary px-4 py-20 text-background selection:bg-background selection:text-primary md:px-10">
+    <footer className="mt-auto grid grid-cols-4 gap-20 bg-primary px-4 py-20 text-background selection:bg-background selection:text-primary md:px-10">
       <article className="col-span-4 flex flex-col gap-4 md:col-span-2 xl:col-span-1">
-        <h3>Prava Cijena</h3>
+        <div>
+          <LogoOnPrimary className="h-10" />
+        </div>
         <p>Pronađi i usporedi cijene namirnica iz više trgovina na jednom mjestu.</p>
       </article>
       <article className="col-span-4 flex flex-col gap-4 md:col-span-2 xl:col-span-1">

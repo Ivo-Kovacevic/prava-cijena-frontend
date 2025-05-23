@@ -7,22 +7,23 @@ import { getStaticCategories, getStaticProducts } from "@/lib/actions";
 import Category from "@/ui/Category";
 import dummyProductStores from "@/const/dummyProductStores";
 import ProductStore from "@/ui/product/ProductStore";
+import GeneralError from "@/ui/icons/GeneralError";
 
 export default async function Page() {
   const products = await getStaticProducts();
   const categories = await getStaticCategories();
 
   if (products.error || categories.error) {
-    return <h2 className="mt-14 text-center">Greška pri dohvaćanju podataka.</h2>;
+    return <GeneralError />;
   }
 
   return (
-    <main className="flex flex-col gap-40 py-32">
+    <main className="flex flex-col gap-40 py-28 md:py-32">
       <section className="flex h-[400px] items-center gap-5 px-4 md:h-[520px] md:px-10">
         <article className="flex w-full flex-col gap-5 xl:w-1/2">
           <h1 className="bg-gradient-to-r from-lime-800 to-lime-600 bg-clip-text text-transparent">
-            Pregled cijena svih proizvoda, <br />
-            iz svih trgovina, <br />
+            Pronađi sve cijene
+            <br />
             na jednom mjestu
           </h1>
           <h5>
