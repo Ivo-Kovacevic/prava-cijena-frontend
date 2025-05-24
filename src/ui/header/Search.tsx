@@ -92,7 +92,7 @@ export default function Search() {
           name="search"
           aria-label="Search"
           placeholder="Pretraži proizvode"
-          className="h-full w-full bg-background text-h6 font-semibold text-caption caret-primary outline-none"
+          className="h-full w-full bg-background text-h6 font-semibold text-caption caret-primary outline-none focus:outline-0"
           onChange={(e) => {
             if (e.target.value.length < 3) {
               setProducts([]);

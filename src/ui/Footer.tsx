@@ -6,19 +6,25 @@ export default function Footer() {
     <footer className="mt-auto grid grid-cols-4 gap-20 bg-primary px-4 py-20 text-background selection:bg-background selection:text-primary md:px-10">
       <article className="col-span-4 flex flex-col gap-4 md:col-span-2 xl:col-span-1">
         <div>
-          <LogoOnPrimary className="h-10" />
+          <Link href="/" className="focus:outline-background">
+            <LogoOnPrimary className="h-10" />
+          </Link>
         </div>
         <p>Pronađi i usporedi cijene namirnica iz više trgovina na jednom mjestu.</p>
       </article>
       <article className="col-span-4 flex flex-col gap-4 md:col-span-2 xl:col-span-1">
         <h3>Brzi linkovi</h3>
-        <Link href="/">Početna</Link>
-        <Link href="/kategorije">Kategorije</Link>
+        <Link className="w-fit hover:underline focus:outline-background" href="/">
+          Početna
+        </Link>
+        <Link className="w-fit hover:underline focus:outline-background" href="/kategorije">
+          Kategorije
+        </Link>
         <p>Košarica</p>
       </article>
       <article className="col-span-4 flex flex-col gap-4 md:col-span-2 xl:col-span-1">
         <h3>Informacije</h3>
-        <p>O name</p>
+        <p>O nama</p>
         <p>Česta pitanja</p>
         <p>Uvjeti korištenja</p>
       </article>

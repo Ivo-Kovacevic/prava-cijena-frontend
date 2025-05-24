@@ -35,7 +35,7 @@ export type CategoryType = {
   id: string;
   name: string;
   slug: string;
-  imageUrl?: string;
+  imageUrl: string;
   hexColor: string;
   parentCategoryId: string;
   subcategories: CategoryType[];

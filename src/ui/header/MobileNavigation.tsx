@@ -37,13 +37,16 @@ export default function MobileNavigation() {
       <div className="flex items-center gap-8">
         <FontAwesomeIcon
           icon={faMagnifyingGlass}
-          className="text-h3 hover:cursor-pointer"
+          className="text-h3 hover:cursor-pointer hover:text-primary"
           onClick={() => setShowSearch((prev) => !prev)}
         />
-        <FontAwesomeIcon icon={faShoppingCart} className="text-h3" />
+        <FontAwesomeIcon
+          icon={faShoppingCart}
+          className="cursor-pointer text-h3 hover:text-primary"
+        />
         <FontAwesomeIcon
           icon={showNavigation ? faClose : faBars}
-          className={`z-20 text-h2 hover:cursor-pointer ${showNavigation ? "fixed translate-x-[60px]" : "static"}`}
+          className={`z-20 text-h2 hover:cursor-pointer hover:text-primary ${showNavigation ? "fixed translate-x-[60px]" : "static"}`}
           onClick={() => setShowNavigation(!showNavigation)}
         />
       </div>
@@ -77,7 +80,7 @@ export default function MobileNavigation() {
         <div className="fixed inset-0 z-30 flex flex-col items-start gap-2 bg-background p-4 py-5">
           <FontAwesomeIcon
             icon={faArrowLeft}
-            className="pl-3 text-h2 hover:cursor-pointer"
+            className="pl-3 text-h2 hover:cursor-pointer hover:text-primary"
             onClick={() => setShowSearch(false)}
           />
 
