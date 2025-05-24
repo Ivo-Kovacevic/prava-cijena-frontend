@@ -2,10 +2,10 @@
 
 export default function Error({ className }: { className?: string }) {
   return (
-    <div className="flex h-[70vh] items-center justify-center px-5">
+    <div className="flex items-center justify-center px-5">
       <svg
         viewBox="0 0 386 242"
-        className={`max-w-[400px] ${className}`}
+        className={`my-48 max-w-[400px] ${className}`}
         xmlns="http://www.w3.org/2000/svg"
       >
         <rect
