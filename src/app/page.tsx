@@ -18,8 +18,8 @@ export default async function Page() {
   }
 
   return (
-    <main className="flex flex-col gap-40 py-28 md:py-32">
-      <section className="flex h-[400px] items-center gap-5 px-4 md:h-[520px] md:px-10">
+    <main className="flex flex-col gap-32 py-16">
+      <section className="flex h-[400px] items-center gap-5 px-4 md:px-10 xl:h-[520px]">
         <article className="flex w-full flex-col gap-5 xl:w-1/2">
           <h1 className="bg-gradient-to-r from-lime-800 to-lime-600 bg-clip-text text-transparent">
             Pronađi sve cijene
