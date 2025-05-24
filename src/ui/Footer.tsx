@@ -28,7 +28,7 @@ export default function Footer() {
         <p>Preuzmi na Apple Store</p>
       </article>
       <article className="col-span-4 text-center">
-        <p>© 2025 PravaCijena. Sva prava pridržana.</p>
+        <p>© 2025 Prava Cijena. Sva prava pridržana.</p>
       </article>
     </footer>
   );

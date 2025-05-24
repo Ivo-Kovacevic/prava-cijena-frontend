@@ -35,12 +35,15 @@ export default function Search() {
       return;
     }
     setProducts(result.data);
-  }, 300);
+  }, 500);
 
   const handleSearchNavigation = (searchTerm: string) => {
     if (!searchTerm || searchTerm.length < 3) {
       return;
     }
+
+    setShowResults(false);
+    inputRef.current?.blur();
 
     router.push(`/pretraga?izraz=${encodeURIComponent(searchTerm)}`);
   };

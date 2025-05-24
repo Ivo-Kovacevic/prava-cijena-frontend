@@ -1,6 +1,6 @@
 export default function GeneralError({ className }: { className?: string }) {
   return (
-    <div className="flex h-[80vh] items-center justify-center px-5">
+    <div className="flex h-[70vh] items-center justify-center px-5">
       <svg
         viewBox="0 0 445 246"
         className={`max-w-[400px] ${className}`}
