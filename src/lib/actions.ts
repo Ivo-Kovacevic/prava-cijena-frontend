@@ -58,10 +58,10 @@ export async function getStoreLocations(productSlug: string, storeSlug: string) 
   );
 }
 
-export async function searchProducts(searchTerm: string) {
+export async function searchProducts(searchTerm: string, page: number = 1, limit: number = 5) {
   return await tryCatch<ProductType[]>(
-    fetch(`${API_URL}/api/products/search?searchTerm=${searchTerm}`, { cache: "no-store" }).then(
-      (res) => res.json(),
-    ),
+    fetch(`${API_URL}/api/products/search?searchTerm=${searchTerm}&page=${page}&limit=${limit}`, {
+      cache: "no-store",
+    }).then((res) => res.json()),
   );
 }

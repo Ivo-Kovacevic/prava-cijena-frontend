@@ -11,10 +11,12 @@ import {
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Search from "@/ui/header/Search";
+import { usePathname } from "next/navigation";
 
 export default function MobileNavigation() {
   const [showNavigation, setShowNavigation] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const pathname = usePathname();
 
   const navItems = [
     { to: "/", label: "Početna" },
@@ -24,6 +26,10 @@ export default function MobileNavigation() {
   useEffect(() => {
     document.body.style.overflow = showSearch ? "hidden" : "auto";
   }, [showSearch]);
+
+  useEffect(() => {
+    setShowSearch(false);
+  }, [pathname]);
 
   return (
     <>

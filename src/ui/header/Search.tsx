@@ -9,24 +9,25 @@ import { searchProducts } from "@/lib/actions";
 import { ProductType } from "@/@types/api-types";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Search() {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
 
-  const handleSearch = useDebouncedCallback(async (term: string) => {
-    if (term.length < 3) {
+  const handleSearch = useDebouncedCallback(async (searchTerm: string) => {
+    if (searchTerm.length < 3) {
       return;
     }
 
     setLoading(true);
-    const result = await searchProducts(term);
+    const result = await searchProducts(searchTerm);
     setLoading(false);
 
     if (result.error) {
@@ -35,6 +36,14 @@ export default function Search() {
     }
     setProducts(result.data);
   }, 300);
+
+  const handleSearchNavigation = (searchTerm: string) => {
+    if (!searchTerm || searchTerm.length < 3) {
+      return;
+    }
+
+    router.push(`/pretraga?izraz=${encodeURIComponent(searchTerm)}`);
+  };
 
   // Close searchbar when navigating to other page
   useEffect(() => {
@@ -63,6 +72,11 @@ export default function Search() {
         action=""
         className="flex cursor-text items-center gap-3 rounded-outer p-4 transition focus-within:border-primary focus-within:ring-2 focus-within:ring-primary"
         onClick={() => inputRef.current?.focus()}
+        onSubmit={(e) => {
+          e.preventDefault();
+
+          handleSearchNavigation(inputRef.current?.value ?? "");
+        }}
       >
         <FontAwesomeIcon
           icon={faMagnifyingGlass}

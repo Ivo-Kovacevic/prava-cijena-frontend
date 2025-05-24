@@ -73,3 +73,15 @@ export type ProductStoreType = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type SearchResult = {
+  products: ProductType[];
+  pagination: Pagination;
+};
+
+export type Pagination = {
+  page: number;
+  limit: number;
+  totalProducts: number;
+  totalPages: number;
+};
