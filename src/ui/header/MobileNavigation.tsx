@@ -21,6 +21,7 @@ export default function MobileNavigation() {
   const navItems = [
     { to: "/", label: "Početna" },
     { to: "/kategorije", label: "Kategorije" },
+    { to: "/prijava", label: "Prijavi se" },
   ];
 
   useEffect(() => {

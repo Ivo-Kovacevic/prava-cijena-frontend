@@ -8,7 +8,7 @@ interface Props {
   params: Promise<{ productSlug: string }>;
 }
 
-export default async function ProductLayout({ children, params }: Props) {
+export default async function Layout({ children, params }: Props) {
   const { productSlug } = await params;
 
   const product = await getProduct(productSlug);

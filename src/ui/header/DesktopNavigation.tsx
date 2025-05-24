@@ -20,7 +20,7 @@ export default function DesktopNavigation() {
       </Link>
 
       <Link
-        href="#"
+        href="/prijava"
         className="hidden rounded-xl bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-95 md:block"
       >
         Prijavi se
