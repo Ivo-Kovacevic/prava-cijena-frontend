@@ -4,6 +4,7 @@ import Link from "next/link";
 
 export default function Product({ product }: { product: ProductType }) {
   const productLink = `/proizvod/${product.slug}`;
+
   return (
     <article className="flex h-[390px] min-w-80 flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4 sm:min-w-0">
       <div className="flex h-[200px] justify-center">

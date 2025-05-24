@@ -1,15 +1,14 @@
 "use client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faQuestion } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import VerticalLine from "@/ui/VerticalLine";
 import { useDebouncedCallback } from "use-debounce";
 import { useEffect, useRef, useState } from "react";
 import { searchProducts } from "@/lib/actions";
 import { ProductType } from "@/@types/api-types";
-import Image from "next/image";
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import SearchProduct from "@/ui/product/SearchProduct";
 
 export default function Search() {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -113,30 +112,7 @@ export default function Search() {
             onClick={() => inputRef.current?.focus()}
           >
             {products.map((product) => (
-              <li key={product.id} className="flex items-center gap-4">
-                <div className="flex aspect-square h-[75px]">
-                  {product.imageUrl ? (
-                    <Image
-                      src={product.imageUrl}
-                      alt={`Slika proizvoda ${product.name}`}
-                      width={75}
-                      height={75}
-                      className="aspect-square h-[75px] object-contain drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)]"
-                    />
-                  ) : (
-                    <FontAwesomeIcon icon={faQuestion} className="m-auto text-2xl" />
-                  )}
-                </div>
-                <div>
-                  <Link
-                    href={`/proizvod/${product.slug}`}
-                    className="text-h5 transition hover:text-primary"
-                  >
-                    {product.name}
-                  </Link>
-                  <h6 className="text-caption">7 trgovina</h6>
-                </div>
-              </li>
+              <SearchProduct key={product.id} product={product} />
             ))}
           </ul>
         </div>
