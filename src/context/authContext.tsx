@@ -9,6 +9,7 @@ import { API_URL } from "@/utils/config";
 
 interface AuthContextType {
   user: UserType | null;
+  setUser: React.Dispatch<React.SetStateAction<UserType | null>>;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<UserType | string>;
   register: (email: string, password: string) => Promise<UserType | string>;
@@ -103,13 +104,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     );
 
     setUser(null);
-    router.refresh();
     router.push("/");
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated: !!user, login, register, logout, isLoading, checkAuthStatus }}
+      value={{
+        user,
+        setUser,
+        isAuthenticated: !!user,
+        login,
+        register,
+        logout,
+        isLoading,
+        checkAuthStatus,
+      }}
     >
       {children}
     </AuthContext.Provider>

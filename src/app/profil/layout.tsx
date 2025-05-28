@@ -1,8 +1,9 @@
 import { ReactNode } from "react";
-import { checkUser, logout } from "@/lib/actions";
+import { checkUser } from "@/lib/actions";
 import GeneralError from "@/ui/icons/GeneralError";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { Logout } from "@/ui/profile/Logout";
 
 export default async function Layout({ children }: { children: ReactNode }) {
   const result = await checkUser();
@@ -18,7 +19,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
           <FontAwesomeIcon icon={faUser} className="text-2xl" />
         </div>
         <h4>{result.data.email}</h4>
-        <h5 onClick={logout}>Odjavi se</h5>
+        <Logout />
       </section>
       <section className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-2 xl:col-span-3 xl:grid-cols-3 2xl:col-span-4 2xl:grid-cols-4">
         {children}

@@ -12,28 +12,14 @@ import { tryCatch } from "@/utils/try-catch";
 import { cookies } from "next/headers";
 
 export async function getStaticCategories() {
-  const cookieStore = await cookies();
-  const tokenValue = cookieStore.get("jwtToken")?.value;
-
   return await tryCatch<CategoryType[]>(
-    fetch(`${API_URL}/api/categories/`, {
-      headers: {
-        ...(tokenValue && { Cookie: `jwtToken=${tokenValue}` }),
-      },
-    }).then((res) => res.json()),
+    fetch(`${API_URL}/api/categories/`).then((res) => res.json()),
   );
 }
 
 export async function getStaticProducts() {
-  const cookieStore = await cookies();
-  const tokenValue = cookieStore.get("jwtToken")?.value;
-
   return await tryCatch<ProductType[]>(
-    fetch(`${API_URL}/api/categories/mlijeko/products?limit=10`, {
-      headers: {
-        ...(tokenValue && { Cookie: `jwtToken=${tokenValue}` }),
-      },
-    }).then((res) => res.json()),
+    fetch(`${API_URL}/api/categories/mlijeko/products?limit=10`).then((res) => res.json()),
   );
 }
 
@@ -153,7 +139,7 @@ export async function checkUser() {
   const cookieStore = await cookies();
   const tokenValue = cookieStore.get("jwtToken")?.value;
 
-  return await tryCatch<UserType>(
+  return await tryCatch<Response>(
     fetch(`${API_URL}/api/users/me`, {
       method: "GET",
       headers: {
