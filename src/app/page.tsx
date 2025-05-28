@@ -6,8 +6,8 @@ import SeeMore from "@/ui/SeeMore";
 import { getStaticCategories, getStaticProducts } from "@/lib/actions";
 import Category from "@/ui/Category";
 import dummyProductStores from "@/const/dummyProductStores";
-import ProductStore from "@/ui/product/ProductStore";
 import GeneralError from "@/ui/icons/GeneralError";
+import StaticProductStore from "@/ui/product/StaticProductStore";
 
 export default async function Page() {
   const products = await getStaticProducts();
@@ -41,7 +41,7 @@ export default async function Page() {
         </article>
         <div className="hidden w-full flex-col gap-5 xl:flex xl:w-1/2">
           {dummyProductStores.map((store) => (
-            <ProductStore key={store.id} store={store} productSlug="" />
+            <StaticProductStore key={store.id} store={store} />
           ))}
         </div>
       </section>

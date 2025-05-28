@@ -9,10 +9,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { API_URL } from "@/utils/config";
 import { tryCatch } from "@/utils/try-catch";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Product({ product }: { product: ProductType }) {
   const [savedProduct, setSavedProduct] = useState(product.savedProduct);
   const productLink = `/proizvod/${product.slug}`;
+  const router = useRouter();
 
   async function toggleSavedProduct() {
     const method = savedProduct ? "DELETE" : "POST";
@@ -40,7 +42,7 @@ export default function Product({ product }: { product: ProductType }) {
         />
       </div>
       <div className="flex h-[200px] justify-center">
-        <Link href={productLink}>
+        <Link href={productLink} prefetch={false} onMouseEnter={() => router.prefetch(productLink)}>
           <Image
             src={
               product.imageUrl
@@ -55,7 +57,7 @@ export default function Product({ product }: { product: ProductType }) {
         </Link>
       </div>
 
-      <Link href={productLink}>
+      <Link href={productLink} prefetch={false} onMouseEnter={() => router.prefetch(productLink)}>
         <h5 className="line-clamp-2 transition hover:text-primary">{product.name}</h5>
       </Link>
 
@@ -66,6 +68,8 @@ export default function Product({ product }: { product: ProductType }) {
 
         <Link
           href={productLink}
+          onMouseEnter={() => router.prefetch(productLink)}
+          prefetch={false}
           className="mr-0 h-[50px] w-[125px] rounded-lg bg-lime-800 bg-opacity-20 px-6 py-3 text-primary transition hover:bg-opacity-30"
         >
           <h6>Pregledaj</h6>
