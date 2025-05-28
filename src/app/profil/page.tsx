@@ -8,7 +8,7 @@ export default async function Page() {
   const savedProducts = await getSavedProducts();
   const savedStores = await getSavedProducts();
 
-  if (savedProducts.error) {
+  if (savedProducts.error || savedStores.error) {
     return <GeneralError />;
   }
 
@@ -38,8 +38,8 @@ export default async function Page() {
           <FontAwesomeIcon icon={faShop} className="text-2xl" />
         </div>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-          {savedProducts.data.length > 0 ? (
-            savedProducts.data.map((savedProduct) => (
+          {savedStores.data.length > 0 ? (
+            savedStores.data.map((savedProduct) => (
               <Product key={savedProduct.id} product={savedProduct} />
             ))
           ) : (
