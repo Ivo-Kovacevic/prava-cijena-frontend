@@ -139,7 +139,7 @@ export async function checkUser() {
   const cookieStore = await cookies();
   const tokenValue = cookieStore.get("jwtToken")?.value;
 
-  return await tryCatch<Response>(
+  return await tryCatch<UserType>(
     fetch(`${API_URL}/api/users/me`, {
       method: "GET",
       headers: {
