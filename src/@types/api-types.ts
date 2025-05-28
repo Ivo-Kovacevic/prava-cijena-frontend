@@ -6,6 +6,7 @@ export type ProductType = {
   categoryId: string;
   imageUrl: string | null;
   numberOfStores: number;
+  savedProduct: boolean;
   stores: StoreType[];
   createdAt: Date;
   updatedAt: Date;
@@ -84,4 +85,9 @@ export type Pagination = {
   limit: number;
   totalProducts: number;
   totalPages: number;
+};
+
+export type UserType = {
+  username: string;
+  email: string;
 };

@@ -5,6 +5,7 @@ import Footer from "@/ui/Footer";
 import { poppins } from "@/ui/fonts";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import { AuthProvider } from "@/context/authContext";
 
 config.autoAddCss = false;
 
@@ -26,9 +27,11 @@ export default function RootLayout({
       <body
         className={`${poppins.className} flex min-h-screen flex-col gap-6 antialiased md:gap-10`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <Header />
+          {children}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
