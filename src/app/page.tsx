@@ -10,10 +10,10 @@ import GeneralError from "@/ui/icons/GeneralError";
 import StaticProductStore from "@/ui/product/StaticProductStore";
 
 export default async function Page() {
-  const products = await getStaticProducts();
+  const pagination = await getStaticProducts();
   const categories = await getStaticCategories();
 
-  if (products.error || categories.error) {
+  if (pagination.error || categories.error) {
     return <GeneralError />;
   }
 
@@ -49,7 +49,7 @@ export default async function Page() {
       <section className="scrollbar-custom flex flex-col gap-y-5">
         <h3 className="px-4 md:px-10">Istaknuti proizvodi</h3>
         <div className="flex gap-5 overflow-x-auto px-4 pb-4 sm:grid sm:grid-cols-2 md:px-10 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-          {products.data.map((product) => (
+          {pagination.data.products.map((product) => (
             <Product key={product.id} product={product} />
           ))}
         </div>

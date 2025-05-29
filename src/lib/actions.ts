@@ -2,6 +2,7 @@
 
 import {
   CategoryType,
+  Pagination,
   ProductType,
   StoreLocationType,
   StoreType,
@@ -18,7 +19,7 @@ export async function getStaticCategories() {
 }
 
 export async function getStaticProducts() {
-  return await tryCatch<ProductType[]>(
+  return await tryCatch<Pagination>(
     fetch(`${API_URL}/api/categories/mlijeko/products?limit=10`).then((res) => res.json()),
   );
 }
@@ -31,13 +32,13 @@ export async function getCategory(category: string) {
 
 export async function getProducts(
   category: string = "gazirana-pica",
-  limit: number = 80,
   page: number = 1,
+  limit: number = 60,
 ) {
   const cookieStore = await cookies();
   const tokenValue = cookieStore.get("jwtToken")?.value;
 
-  return await tryCatch<ProductType[]>(
+  return await tryCatch<Pagination>(
     fetch(`${API_URL}/api/categories/${category}/products?page=${page}&limit=${limit}`, {
       cache: "no-store",
       headers: {

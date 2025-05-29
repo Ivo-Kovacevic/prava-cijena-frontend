@@ -81,10 +81,9 @@ export type SearchResult = {
 };
 
 export type Pagination = {
-  page: number;
-  limit: number;
-  totalProducts: number;
+  currentPage: number;
   totalPages: number;
+  products: ProductType[];
 };
 
 export type UserType = {

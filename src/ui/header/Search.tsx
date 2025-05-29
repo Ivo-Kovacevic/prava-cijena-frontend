@@ -41,10 +41,10 @@ export default function Search() {
       return;
     }
 
+    router.push(`/pretraga?izraz=${encodeURIComponent(searchTerm)}`);
+
     setShowResults(false);
     inputRef.current?.blur();
-
-    router.push(`/pretraga?izraz=${encodeURIComponent(searchTerm)}`);
   };
 
   // Close searchbar when navigating to other page

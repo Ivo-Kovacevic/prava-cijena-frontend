@@ -27,10 +27,10 @@ export default function StaticProductStore({ store }: { store: StoreType }) {
         </div>
       </div>
       <div className="flex flex-col items-end justify-center gap-5">
-        <p className="flex items-center gap-2 transition hover:text-primary">
+        <h6 className="flex items-center gap-2 transition hover:text-primary">
           <FontAwesomeIcon icon={faArrowTrendUp} className="text-xl" />
-          <h6>Povijest cijene</h6>
-        </p>
+          <div>Povijest cijene</div>
+        </h6>
       </div>
     </article>
   );

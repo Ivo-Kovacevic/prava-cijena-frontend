@@ -59,6 +59,7 @@ h6 {
     scrollbar-color: var(--caption) var(--background);
 }
 
+
 /* Make element hidden cause it was affecting elements position in DOM */
 nextjs-portal {
     display: none;

@@ -11,12 +11,13 @@ import {
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Search from "@/ui/header/Search";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export default function MobileNavigation() {
   const [showNavigation, setShowNavigation] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const pathname = usePathname();
+  const searchParam = useSearchParams().get("izraz");
 
   const navItems = [
     { to: "/", label: "Početna" },
@@ -30,7 +31,7 @@ export default function MobileNavigation() {
 
   useEffect(() => {
     setShowSearch(false);
-  }, [pathname]);
+  }, [pathname, searchParam]);
 
   return (
     <>
