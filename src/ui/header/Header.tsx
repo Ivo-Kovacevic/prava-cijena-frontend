@@ -2,6 +2,7 @@ import Link from "next/link";
 import MobileNavigation from "@/ui/header/MobileNavigation";
 import Logo from "@/ui/icons/Logo";
 import DesktopNavigation from "@/ui/header/DesktopNavigation";
+import { Suspense } from "react";
 
 export default function Header() {
   return (
@@ -12,7 +13,9 @@ export default function Header() {
 
       {/* Mobile navigation */}
       <div className="lg:hidden">
-        <MobileNavigation />
+        <Suspense fallback={null}>
+          <MobileNavigation />
+        </Suspense>
       </div>
 
       {/* Desktop navigation */}
