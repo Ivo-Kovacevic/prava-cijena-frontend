@@ -10,6 +10,7 @@ export default function Category({ category }: { category: CategoryType }) {
     >
       <Link
         href={`kategorije/${category.slug}`}
+        prefetch={false}
         className="flex h-full w-full flex-col items-center justify-center rounded-outer p-2 text-center md:p-5"
       >
         <Svg svgUrl={category.imageUrl} color={category.hexColor} size={128} />
