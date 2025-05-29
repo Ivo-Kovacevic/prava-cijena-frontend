@@ -34,7 +34,7 @@ export default function Search() {
       return;
     }
     setProducts(result.data);
-  }, 500);
+  }, 300);
 
   const handleSearchNavigation = (searchTerm: string) => {
     if (!searchTerm || searchTerm.length < 3) {

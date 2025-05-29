@@ -18,7 +18,7 @@ export default async function Page() {
         <h3>Sve kategorije</h3>
       </section>
 
-      <section className="flex flex-col gap-y-5">
+      <section className="scrollbar-custom flex flex-col gap-y-5">
         {categories.data.map((category) => (
           <div key={category.id} className="flex gap-x-5 overflow-x-scroll pl-4 md:pl-10">
             <Category category={category} />

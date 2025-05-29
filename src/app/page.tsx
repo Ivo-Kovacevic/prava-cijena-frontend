@@ -46,7 +46,7 @@ export default async function Page() {
         </div>
       </section>
 
-      <section className="flex flex-col gap-y-5">
+      <section className="scrollbar-custom flex flex-col gap-y-5">
         <h3 className="px-4 md:px-10">Istaknuti proizvodi</h3>
         <div className="flex gap-5 overflow-x-auto px-4 pb-4 sm:grid sm:grid-cols-2 md:px-10 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {products.data.map((product) => (
@@ -56,7 +56,7 @@ export default async function Page() {
         <SeeMore href="/kategorije/mlijeko" text="Pogledaj više" />
       </section>
 
-      <section className="flex flex-col gap-y-5">
+      <section className="scrollbar-custom flex flex-col gap-y-5">
         <h3 className="px-4 md:px-10">Glavne kategorije</h3>
         <div className="flex gap-x-5 overflow-x-auto px-4 pb-4 md:px-10">
           {categories.data.map((category) => (

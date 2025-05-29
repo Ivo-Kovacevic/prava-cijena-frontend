@@ -55,6 +55,10 @@ h6 {
     outline: 2px var(--primary) solid;
 }
 
+.scrollbar-custom {
+    scrollbar-color: var(--caption) var(--background);
+}
+
 /* Make element hidden cause it was affecting elements position in DOM */
 nextjs-portal {
     display: none;

@@ -18,7 +18,7 @@ export default async function ProductInfo({ productSlug }: { productSlug: string
               : "https://res.cloudinary.com/dqbe0apqn/image/upload/unknown.png"
           }
           alt={product.data.name}
-          className="object-contain"
+          className="object-contain drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)]"
           fill
         />
       </div>
