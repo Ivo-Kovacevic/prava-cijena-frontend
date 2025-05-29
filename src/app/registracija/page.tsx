@@ -76,11 +76,11 @@ export default function Page() {
           />
         </div>
 
-        <button className="z-10 rounded-xl bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-90 focus:outline-foreground">
+        <button className="rounded-xl bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-90 focus:outline-foreground">
           Registriraj se
         </button>
 
-        <div className="relative flex justify-center">
+        <div className="relative -z-10 flex justify-center">
           <div
             className={`absolute text-red-800 transition-transform duration-300 ${
               showError ? "-translate-y-4" : "-translate-y-12"
@@ -93,7 +93,11 @@ export default function Page() {
 
       <div className="flex gap-2">
         <span className="text-caption">Imate račun?</span>
-        <Link href="/prijava" className="text-caption underline transition hover:text-foreground">
+        <Link
+          href="/prijava"
+          prefetch={false}
+          className="text-caption underline transition hover:text-foreground"
+        >
           Prijavite se
         </Link>
       </div>

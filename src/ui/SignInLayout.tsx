@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { getStaticCategories } from "@/lib/actions";
 import GeneralError from "@/ui/icons/GeneralError";
-import Link from "next/link";
 import Svg from "@/ui/Svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -31,12 +30,9 @@ export default async function SignInLayout({ children }: Props) {
                   className={`h-44 rounded-outer transition ${i == 0 || i == 3 ? "col-span-2" : "col-span-1"}`}
                   style={{ backgroundColor: `${category.hexColor}20` }}
                 >
-                  <Link
-                    href={`kategorije/${category.slug}`}
-                    className="flex h-full w-full flex-col items-center justify-center rounded-outer p-10 text-center"
-                  >
+                  <div className="flex h-full w-full flex-col items-center justify-center rounded-outer p-10 text-center">
                     <Svg svgUrl={category.imageUrl} color={category.hexColor} size={96} />
-                  </Link>
+                  </div>
                 </article>
               ))}
             </div>

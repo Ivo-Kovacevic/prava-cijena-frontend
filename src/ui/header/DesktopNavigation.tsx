@@ -31,6 +31,7 @@ export default function DesktopNavigation() {
       ) : (
         <Link
           href="/prijava"
+          prefetch={false}
           className="hidden rounded-xl bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-95 focus:outline-foreground md:block"
         >
           Prijavi se
