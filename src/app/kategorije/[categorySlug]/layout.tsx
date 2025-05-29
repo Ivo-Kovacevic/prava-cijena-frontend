@@ -2,11 +2,6 @@ import { ReactNode, Suspense } from "react";
 import CategorySidebar from "@/ui/category/CategorySidebar";
 import CategorySidebarSkeleton from "@/ui/skeletons/CategorySidebarSkeleton";
 
-interface Props {
-  children: ReactNode;
-  params: Promise<{ categorySlug: string }>;
-}
-
 export default async function Layout({
   params,
   children,
