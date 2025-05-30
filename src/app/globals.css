@@ -59,6 +59,11 @@ h6 {
     scrollbar-color: var(--caption) var(--background);
 }
 
+@media (hover: hover) {
+    .only-hover\:text-primary:hover {
+        color: var(--primary);
+    }
+}
 
 /* Make element hidden cause it was affecting elements position in DOM */
 nextjs-portal {

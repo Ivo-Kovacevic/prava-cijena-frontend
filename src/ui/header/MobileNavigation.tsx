@@ -38,16 +38,16 @@ export default function MobileNavigation() {
       <div className="flex items-center gap-8">
         <FontAwesomeIcon
           icon={faMagnifyingGlass}
-          className="text-h3 hover:cursor-pointer hover:text-primary"
+          className="only-hover:text-primary text-h3 hover:cursor-pointer active:text-primary"
           onClick={() => setShowSearch((prev) => !prev)}
         />
         <FontAwesomeIcon
           icon={faShoppingCart}
-          className="cursor-pointer text-h3 hover:text-primary"
+          className="only-hover:text-primary cursor-pointer text-h3 active:text-primary"
         />
         <FontAwesomeIcon
           icon={showNavigation ? faClose : faBars}
-          className={`z-20 text-h2 hover:cursor-pointer hover:text-primary ${showNavigation ? "fixed translate-x-[60px]" : "static"}`}
+          className={`only-hover:text-primary z-20 text-h2 hover:cursor-pointer active:text-primary ${showNavigation ? "fixed translate-x-[60px]" : "static"}`}
           onClick={() => setShowNavigation(!showNavigation)}
         />
       </div>
@@ -67,7 +67,7 @@ export default function MobileNavigation() {
             >
               <Link
                 href={item.to}
-                className="text-3xl transition hover:text-primary"
+                className="only-hover:text-primary text-3xl transition active:text-primary"
                 onClick={() => setShowNavigation(false)}
               >
                 {item.label}
@@ -81,7 +81,7 @@ export default function MobileNavigation() {
         <div className="fixed inset-0 z-30 flex flex-col items-start gap-2 bg-background p-4 py-5">
           <FontAwesomeIcon
             icon={faArrowLeft}
-            className="pl-3 text-h2 hover:cursor-pointer hover:text-primary"
+            className="only-hover:text-primary pl-3 text-h2 hover:cursor-pointer active:text-primary"
             onClick={() => setShowSearch(false)}
           />
 
