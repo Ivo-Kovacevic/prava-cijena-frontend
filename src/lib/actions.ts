@@ -26,7 +26,9 @@ export async function getStaticProducts() {
 
 export async function getCategory(category: string) {
   return await tryCatch<CategoryType>(
-    fetch(`${API_URL}/api/categories/${category}`, { cache: "no-store" }).then((res) => res.json()),
+    fetch(`${API_URL}/api/categories/${category}`, { next: { revalidate: false } }).then((res) =>
+      res.json(),
+    ),
   );
 }
 
@@ -40,7 +42,9 @@ export async function getProducts(
 
   return await tryCatch<Pagination>(
     fetch(`${API_URL}/api/categories/${category}/products?page=${page}&limit=${limit}`, {
-      cache: "no-store",
+      ...(page === 1
+        ? { next: { revalidate: false } } // Cache only page 1
+        : { cache: "no-store" }), // Don't cache other pages
       headers: {
         ...(tokenValue && { Cookie: `jwtToken=${tokenValue}` }),
       },

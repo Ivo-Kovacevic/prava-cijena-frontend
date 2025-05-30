@@ -4,10 +4,20 @@ import { getProducts } from "@/lib/actions";
 import Product from "@/ui/Product";
 import GeneralError from "@/ui/icons/GeneralError";
 import Pagination from "@/ui/Pagination";
+import { API_URL } from "@/utils/config";
 
 type Params = {
   categorySlug: string;
 };
+
+export async function generateStaticParams() {
+  const res = await fetch(`${API_URL}/api/categories`);
+  const categories = await res.json();
+
+  return categories.map((cat: { slug: string }) => ({
+    categorySlug: cat.slug,
+  }));
+}
 
 export default async function Page({
   params,
