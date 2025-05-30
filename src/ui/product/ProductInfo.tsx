@@ -9,7 +9,7 @@ export default async function ProductInfo({ productSlug }: { productSlug: string
   }
 
   return (
-    <>
+    <div className="sticky top-5 flex flex-col justify-start gap-5">
       <div className="relative flex h-[250px] w-full items-center justify-center">
         <Image
           src={
@@ -23,6 +23,6 @@ export default async function ProductInfo({ productSlug }: { productSlug: string
         />
       </div>
       <h4>{product.data.name}</h4>
-    </>
+    </div>
   );
 }

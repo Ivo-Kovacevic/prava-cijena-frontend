@@ -80,6 +80,14 @@ export async function getProduct(productSlug: string) {
   );
 }
 
+export async function getStore(storeSlug: string) {
+  return await tryCatch<StoreType>(
+    fetch(`${API_URL}/api/stores/${storeSlug}`, {
+      cache: "no-store",
+    }).then((res) => res.json()),
+  );
+}
+
 export async function getProductStores(productSlug: string) {
   return await tryCatch<StoreType[]>(
     fetch(`${API_URL}/api/products/${productSlug}/product-stores`, { cache: "no-store" }).then(

@@ -13,7 +13,7 @@ export default async function Layout({
 
   return (
     <main className="grid gap-5 px-4 pb-4 md:px-10 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-      <section className="flex flex-col gap-5 lg:col-span-1">
+      <section className="h-full lg:col-span-1">
         <Suspense fallback={<CategorySidebarSkeleton />}>
           <CategorySidebar categorySlug={categorySlug} />
         </Suspense>

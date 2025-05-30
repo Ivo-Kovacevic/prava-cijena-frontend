@@ -2,7 +2,7 @@ import Filter from "@/ui/icons/Filter";
 
 export default async function CategorySidebarSkeleton() {
   return (
-    <>
+    <div className="sticky top-5 flex flex-col gap-5 lg:col-span-1">
       <div className="flex items-center justify-between">
         <h3>Filtriranje</h3>
         <Filter className="h-7" />
@@ -19,6 +19,8 @@ export default async function CategorySidebarSkeleton() {
           ))}
         </div>
       </div>
-    </>
+
+      <div />
+    </div>
   );
 }
