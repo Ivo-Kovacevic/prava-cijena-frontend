@@ -9,6 +9,8 @@ import { useAuth } from "@/context/authContext";
 interface UserContextType {
   savedProducts: ProductType[];
   setSavedProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
+  cart: ProductType[];
+  setCart: React.Dispatch<React.SetStateAction<ProductType[]>>;
   savedStores: StoreLocationType[];
   setSavedStores: React.Dispatch<React.SetStateAction<StoreLocationType[]>>;
 }
@@ -19,6 +21,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const { user } = useAuth();
 
   const [savedProducts, setSavedProducts] = useState<ProductType[]>([]);
+  const [cart, setCart] = useState<ProductType[]>([]);
   const [savedStores, setSavedStores] = useState<StoreLocationType[]>([]);
 
   const getSavedProducts = async () => {
@@ -37,9 +40,28 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setSavedProducts(res.data);
   };
 
+  const getCart = async () => {
+    const res = await tryCatch<ProductType[]>(
+      fetch(`${API_URL}/api/cart/products`, {
+        cache: "no-store",
+        credentials: "include",
+      }).then((res) => res.json()),
+    );
+
+    if (res.error) {
+      setCart([]);
+      return;
+    }
+
+    setCart(res.data);
+    console.dir("CART");
+    // console.dir(res.data);
+  };
+
   useEffect(() => {
     if (user) {
       getSavedProducts();
+      getCart();
     }
   }, [user]);
 
@@ -48,6 +70,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       value={{
         savedProducts,
         setSavedProducts,
+        cart,
+        setCart,
         savedStores,
         setSavedStores,
       }}

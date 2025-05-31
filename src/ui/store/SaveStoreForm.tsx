@@ -22,7 +22,6 @@ export default function SaveStoreForm() {
   const [data, formAction, isPending] = useActionState(saveStoreLocation, undefined);
 
   useEffect(() => {
-    console.dir(data);
     if (data && typeof data === "object" && "id" in data) {
       setSavedStores((previousState) => [...previousState, data]);
     }

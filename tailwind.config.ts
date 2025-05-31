@@ -13,6 +13,7 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         highlight: "var(--highlight)",
+        separator: "var(--separator)",
         primary: "var(--primary)",
         caption: "var(--caption)",
       },

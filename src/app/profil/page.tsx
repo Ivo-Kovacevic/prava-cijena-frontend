@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faShop } from "@fortawesome/free-solid-svg-icons";
 import GeneralError from "@/ui/icons/GeneralError";
-import SaveStoreForm from "@/ui/SaveStoreForm";
+import SaveStoreForm from "@/ui/store/SaveStoreForm";
 import { getSavedStores } from "@/lib/savedStoresActions";
 import StoreList from "@/ui/store/StoreList";
 import { getSavedProducts } from "@/lib/savedProductsActions";

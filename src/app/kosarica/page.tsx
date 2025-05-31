@@ -1,7 +1,7 @@
 export default async function Page() {
   return (
     <>
-      <div>Poz</div>
+      <h4>12 proizvoda</h4>
     </>
   );
 }

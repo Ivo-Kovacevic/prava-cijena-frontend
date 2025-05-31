@@ -1,5 +1,5 @@
 import { ReactNode, Suspense } from "react";
-import ProductInfo from "@/ui/product/ProductInfo";
+import ProductSidebar from "@/ui/product/ProductSidebar";
 import ProductInfoSkeleton from "@/ui/skeletons/ProductInfoSkeleton";
 
 interface Props {
@@ -14,7 +14,7 @@ export default async function Layout({ children, params }: Props) {
     <main className="grid grid-cols-1 gap-y-5 px-4 md:px-10 lg:grid-cols-5 lg:gap-x-5">
       <section className="relative col-span-1 h-full w-full flex-col">
         <Suspense fallback={<ProductInfoSkeleton />}>
-          <ProductInfo productSlug={productSlug} />
+          <ProductSidebar productSlug={productSlug} />
         </Suspense>
       </section>
       <section className="col-span-3 flex flex-col gap-5">{children}</section>

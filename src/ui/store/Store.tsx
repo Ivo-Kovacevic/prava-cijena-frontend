@@ -11,7 +11,6 @@ export default function Store({ storeLocation }: { storeLocation: StoreLocationT
   const [data, formAction, isPending] = useActionState(removeSavedStore, undefined);
 
   useEffect(() => {
-    console.dir(data);
     if (data) {
       if (data === 204) {
         setSavedStores((prev) => prev.filter((store) => store.id !== storeLocation.id));

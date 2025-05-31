@@ -10,6 +10,7 @@ import { API_URL } from "@/utils/config";
 import { tryCatch } from "@/utils/try-catch";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/context/userContext";
+import { getTrgovinaForm } from "@/lib/helpers";
 
 export default function Product({ product }: { product: ProductType }) {
   const { savedProducts, setSavedProducts } = useUser();
@@ -75,7 +76,9 @@ export default function Product({ product }: { product: ProductType }) {
         <h5 className="line-clamp-2 transition hover:text-primary">{product.name}</h5>
       </Link>
 
-      <h6 className="text-caption">{product.numberOfStores} trgovine</h6>
+      <h6 className="text-caption">
+        {product.numberOfStores} {getTrgovinaForm(product.numberOfStores)}
+      </h6>
 
       <div className="mt-auto flex items-center">
         <h2 className="m-auto text-primary">{product.lowestPrice} €</h2>

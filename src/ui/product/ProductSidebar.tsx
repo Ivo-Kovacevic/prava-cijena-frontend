@@ -1,10 +1,9 @@
 import Image from "next/image";
 import { getProduct } from "@/lib/actions";
 import GeneralError from "@/ui/icons/GeneralError";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import CartButton from "@/ui/cart/Cart";
 
-export default async function ProductInfo({ productSlug }: { productSlug: string }) {
+export default async function ProductSidebar({ productSlug }: { productSlug: string }) {
   const product = await getProduct(productSlug);
   if (product.error) {
     return <GeneralError />;
@@ -26,10 +25,7 @@ export default async function ProductInfo({ productSlug }: { productSlug: string
       </div>
       <h4>{product.data.name}</h4>
 
-      <button className="m-auto flex h-[50px] w-full max-w-[400px] items-center justify-center gap-2 rounded-lg bg-lime-800 bg-opacity-20 px-6 py-3 text-primary transition hover:bg-opacity-30">
-        <FontAwesomeIcon icon={faShoppingCart} className="p-2 text-xl" />
-        <h6>Dodaj</h6>
-      </button>
+      <CartButton productId={product.data.id} />
     </div>
   );
 }

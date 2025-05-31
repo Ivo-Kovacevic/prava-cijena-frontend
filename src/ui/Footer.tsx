@@ -20,13 +20,20 @@ export default function Footer() {
         <Link className="w-fit hover:underline focus:outline-background" href="/kategorije">
           Kategorije
         </Link>
-        <p>Košarica</p>
+        <Link className="w-fit hover:underline focus:outline-background" href="/kosarica">
+          Košarica
+        </Link>
       </article>
       <article className="col-span-4 flex flex-col gap-4 md:col-span-2 xl:col-span-1">
         <h3>Informacije</h3>
         <p>O nama</p>
-        <p>Česta pitanja</p>
         <p>Uvjeti korištenja</p>
+        <div>
+          Kontakt:{" "}
+          <a href="mailto:info@pravacijena.eu" className="hover:underline focus:outline-background">
+            info@pravacijena.eu
+          </a>
+        </div>
       </article>
       <article className="col-span-4 flex flex-col gap-4 md:col-span-2 xl:col-span-1">
         <h3>Aplikacije</h3>
