@@ -2,14 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/authContext";
 
 export default function Page() {
   const { login } = useAuth();
   const [error, setError] = useState<string | null>(null);
-  const [showError, setShowError] = useState(false);
-  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -22,16 +19,7 @@ export default function Page() {
 
     if (typeof result === "string") {
       setError(result);
-      setShowError(true);
-
-      setTimeout(() => {
-        setShowError(false);
-      }, 5000);
-
-      return;
     }
-
-    router.push("/");
   }
 
   return (
@@ -64,16 +52,6 @@ export default function Page() {
         <button className="rounded-xl bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-90 focus:outline-foreground">
           Prijavi se
         </button>
-
-        <div className="relative -z-10 flex justify-center">
-          <div
-            className={`absolute text-red-800 transition-transform duration-300 ${
-              showError ? "-translate-y-4" : "-translate-y-12"
-            }`}
-          >
-            {error}
-          </div>
-        </div>
       </form>
 
       <div className="flex gap-2">
@@ -85,6 +63,10 @@ export default function Page() {
         >
           Registrirajte se
         </Link>
+      </div>
+
+      <div className="relative -z-10 flex justify-center">
+        <div className="absolute text-red-800 transition-transform duration-300">{error}</div>
       </div>
     </div>
   );

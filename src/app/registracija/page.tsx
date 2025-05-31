@@ -6,7 +6,6 @@ import { useAuth } from "@/context/authContext";
 
 export default function Page() {
   const [error, setError] = useState<string | null>(null);
-  const [showError, setShowError] = useState(false);
   const { register } = useAuth();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -19,11 +18,6 @@ export default function Page() {
 
     if (password !== confirmedPassword) {
       setError("Lozinke nisu iste");
-      setShowError(true);
-
-      setTimeout(() => {
-        setShowError(false);
-      }, 5000);
       return;
     }
 
@@ -31,11 +25,6 @@ export default function Page() {
 
     if (typeof result === "string") {
       setError(result);
-      setShowError(true);
-
-      setTimeout(() => {
-        setShowError(false);
-      }, 5000);
     }
   }
 
@@ -79,16 +68,6 @@ export default function Page() {
         <button className="rounded-xl bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-90 focus:outline-foreground">
           Registriraj se
         </button>
-
-        <div className="relative -z-10 flex justify-center">
-          <div
-            className={`absolute text-red-800 transition-transform duration-300 ${
-              showError ? "-translate-y-4" : "-translate-y-12"
-            }`}
-          >
-            {error}
-          </div>
-        </div>
       </form>
 
       <div className="flex gap-2">
@@ -100,6 +79,10 @@ export default function Page() {
         >
           Prijavite se
         </Link>
+      </div>
+
+      <div className="relative -z-10 flex justify-center">
+        <div className="absolute text-red-800 transition-transform duration-300">{error}</div>
       </div>
     </div>
   );

@@ -61,13 +61,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
 
     if (!res.data.ok) {
-      return "Lozinka treba imati 6 karaktera.";
+      try {
+        const errorResponse = await res.data.json();
+        return errorResponse?.error || "Neuspješno registriranje.";
+      } catch {
+        return "Neuspješno registriranje.";
+      }
     }
 
-    const json = await res.data.json();
-    setUser(json);
+    const user: UserType = await res.data.json();
+    setUser(user);
     router.push("/");
-    return json;
+    return user;
   };
 
   const login = async (email: string, password: string) => {
@@ -85,7 +90,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
 
     if (!res.data.ok) {
-      return "Email ili lozinka je netočna";
+      try {
+        const errorResponse = await res.data.json();
+        return errorResponse?.error || "Neuspješno registriranje.";
+      } catch {
+        return "Neuspješno registriranje.";
+      }
     }
 
     const user: UserType = await res.data.json();

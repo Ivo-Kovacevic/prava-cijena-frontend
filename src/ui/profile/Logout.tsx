@@ -1,15 +1,19 @@
 "use client";
 
 import { useAuth } from "@/context/authContext";
+import { useEffect } from "react";
+import { useUser } from "@/context/userContext";
 
 export function Logout() {
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
+  const { setSavedProducts, setSavedStores } = useUser();
 
-  /*const handleLogout = async () => {
-    await fetch("/api/logout", { method: "POST" });
-    setUser(null);
-    router.push("/");
-  };*/
+  useEffect(() => {
+    if (!user) {
+      setSavedProducts([]);
+      setSavedStores([]);
+    }
+  }, [user, setSavedProducts, setSavedStores]);
 
   return (
     <h5 onClick={logout} className="cursor-pointer hover:text-red-900">
