@@ -52,20 +52,6 @@ export async function getProducts(
   );
 }
 
-export async function getSavedProducts() {
-  const cookieStore = await cookies();
-  const tokenValue = cookieStore.get("jwtToken")?.value;
-
-  return await tryCatch<ProductType[]>(
-    fetch(`${API_URL}/api/saved-products`, {
-      cache: "no-store",
-      headers: {
-        ...(tokenValue && { Cookie: `jwtToken=${tokenValue}` }),
-      },
-    }).then((res) => res.json()),
-  );
-}
-
 export async function getProduct(productSlug: string) {
   const cookieStore = await cookies();
   const tokenValue = cookieStore.get("jwtToken")?.value;
@@ -80,9 +66,17 @@ export async function getProduct(productSlug: string) {
   );
 }
 
-export async function getStore(storeSlug: string) {
-  return await tryCatch<StoreType>(
-    fetch(`${API_URL}/api/stores/${storeSlug}`, {
+export async function getStores() {
+  return await tryCatch<StoreType[]>(
+    fetch(`${API_URL}/api/stores`, {
+      cache: "no-store",
+    }).then((res) => res.json()),
+  );
+}
+
+export async function getStoreLocations(storeId: string) {
+  return await tryCatch<StoreLocationType[]>(
+    fetch(`${API_URL}/api/store-location/${storeId}`, {
       cache: "no-store",
     }).then((res) => res.json()),
   );
@@ -96,7 +90,7 @@ export async function getProductStores(productSlug: string) {
   );
 }
 
-export async function getStoreLocations(productSlug: string, storeSlug: string) {
+export async function getProductLocations(productSlug: string, storeSlug: string) {
   return await tryCatch<StoreLocationType[]>(
     fetch(`${API_URL}/api/store-location/${productSlug}/${storeSlug}`, { cache: "no-store" }).then(
       (res) => res.json(),

@@ -1,6 +1,25 @@
 import { ReactNode, Suspense } from "react";
 import CategorySidebar from "@/ui/category/CategorySidebar";
 import CategorySidebarSkeleton from "@/ui/skeletons/CategorySidebarSkeleton";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { categorySlug: string };
+}): Promise<Metadata> {
+  const categoryName = decodeURIComponent(params.categorySlug).replace(/-/g, " ");
+
+  return {
+    title: `Prava Cijena - ${categoryName[0].toUpperCase() + categoryName.slice(1)}`,
+    description: `Pregledaj proizvode iz kategorije ${
+      categoryName[0].toUpperCase() + categoryName.slice(1)
+    }.`,
+    icons: {
+      icon: "/images/favicon.ico",
+    },
+  };
+}
 
 export default async function Layout({
   params,

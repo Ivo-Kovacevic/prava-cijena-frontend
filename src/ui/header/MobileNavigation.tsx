@@ -12,8 +12,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Search from "@/ui/header/Search";
 import { usePathname, useSearchParams } from "next/navigation";
+import { useAuth } from "@/context/authContext";
 
 export default function MobileNavigation() {
+  const { user } = useAuth();
   const [showNavigation, setShowNavigation] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const pathname = usePathname();
@@ -22,7 +24,10 @@ export default function MobileNavigation() {
   const navItems = [
     { to: "/", label: "Početna" },
     { to: "/kategorije", label: "Kategorije" },
-    { to: "/prijava", label: "Prijavi se" },
+    {
+      to: user ? "/profil" : "/prijava",
+      label: user ? "Profil" : "Prijavi se",
+    },
   ];
 
   useEffect(() => {
@@ -38,16 +43,18 @@ export default function MobileNavigation() {
       <div className="flex items-center gap-8">
         <FontAwesomeIcon
           icon={faMagnifyingGlass}
-          className="only-hover:text-primary text-h3 hover:cursor-pointer active:text-primary"
+          className="text-h3 hover:cursor-pointer hover:text-primary"
           onClick={() => setShowSearch((prev) => !prev)}
         />
-        <FontAwesomeIcon
-          icon={faShoppingCart}
-          className="only-hover:text-primary cursor-pointer text-h3 active:text-primary"
-        />
+        <Link href="/kosarica">
+          <FontAwesomeIcon
+            icon={faShoppingCart}
+            className="cursor-pointer text-h3 hover:text-primary"
+          />
+        </Link>
         <FontAwesomeIcon
           icon={showNavigation ? faClose : faBars}
-          className={`only-hover:text-primary z-20 text-h2 hover:cursor-pointer active:text-primary ${showNavigation ? "fixed translate-x-[60px]" : "static"}`}
+          className={`z-20 text-h2 hover:cursor-pointer hover:text-primary ${showNavigation ? "fixed translate-x-[60px]" : "static"}`}
           onClick={() => setShowNavigation(!showNavigation)}
         />
       </div>
@@ -67,7 +74,7 @@ export default function MobileNavigation() {
             >
               <Link
                 href={item.to}
-                className="only-hover:text-primary text-3xl transition active:text-primary"
+                className="text-3xl transition hover:text-primary"
                 onClick={() => setShowNavigation(false)}
               >
                 {item.label}
@@ -81,7 +88,7 @@ export default function MobileNavigation() {
         <div className="fixed inset-0 z-30 flex flex-col items-start gap-2 bg-background p-4 py-5">
           <FontAwesomeIcon
             icon={faArrowLeft}
-            className="only-hover:text-primary pl-3 text-h2 hover:cursor-pointer active:text-primary"
+            className="pl-3 text-h2 hover:cursor-pointer hover:text-primary"
             onClick={() => setShowSearch(false)}
           />
 

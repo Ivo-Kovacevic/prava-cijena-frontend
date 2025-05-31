@@ -6,7 +6,6 @@ export type ProductType = {
   categoryId: string;
   imageUrl: string | null;
   numberOfStores: number;
-  savedProduct: boolean;
   stores: StoreType[];
   createdAt: Date;
   updatedAt: Date;
@@ -25,9 +24,11 @@ export type StoreType = {
 
 export type StoreLocationType = {
   id: string;
+  storeId: string;
   city: string;
   address: string;
   locationProduct: ProductStoreType;
+  store: StoreType;
   createdAt: Date;
   updatedAt: Date;
 };

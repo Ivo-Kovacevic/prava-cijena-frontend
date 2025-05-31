@@ -1,4 +1,4 @@
-import { getStoreLocations } from "@/lib/actions";
+import { getProductLocations } from "@/lib/actions";
 import GeneralError from "@/ui/icons/GeneralError";
 
 type Params = {
@@ -9,7 +9,7 @@ type Params = {
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { productSlug, storeSlug } = await params;
 
-  const storeLocations = await getStoreLocations(productSlug, storeSlug);
+  const storeLocations = await getProductLocations(productSlug, storeSlug);
   if (storeLocations.error) {
     return <GeneralError />;
   }

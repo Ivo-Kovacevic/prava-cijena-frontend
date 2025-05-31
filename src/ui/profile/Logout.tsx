@@ -12,7 +12,7 @@ export function Logout() {
   };*/
 
   return (
-    <h5 onClick={logout} className="cursor-pointer">
+    <h5 onClick={logout} className="cursor-pointer hover:text-red-900">
       Odjavi se
     </h5>
   );

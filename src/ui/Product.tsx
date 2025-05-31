@@ -8,16 +8,18 @@ import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { API_URL } from "@/utils/config";
 import { tryCatch } from "@/utils/try-catch";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useUser } from "@/context/userContext";
 
 export default function Product({ product }: { product: ProductType }) {
-  const [savedProduct, setSavedProduct] = useState(product.savedProduct);
+  const { savedProducts, setSavedProducts } = useUser();
+  const isSaved = savedProducts.some((sp) => sp.id === product.id);
+
   const productLink = `/proizvod/${product.slug}`;
   const router = useRouter();
 
   async function toggleSavedProduct() {
-    const method = savedProduct ? "DELETE" : "POST";
+    const method = isSaved ? "DELETE" : "POST";
 
     const res = await tryCatch(
       fetch(`${API_URL}/api/saved-products/${product.id}`, {
@@ -27,8 +29,20 @@ export default function Product({ product }: { product: ProductType }) {
       }),
     );
 
-    if (!res.error) {
-      setSavedProduct(!savedProduct);
+    if (res.error) {
+      return;
+    }
+
+    if (res.data.status === 204) {
+      setSavedProducts((prev) => prev.filter((p) => p.id !== product.id));
+      return;
+    }
+
+    if (res.data.ok) {
+      const newProduct: ProductType = await res.data.json();
+      if (newProduct) {
+        setSavedProducts((previousState) => [...previousState, newProduct]);
+      }
     }
   }
 
@@ -36,8 +50,8 @@ export default function Product({ product }: { product: ProductType }) {
     <article className="flex h-[390px] min-w-80 flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4 sm:min-w-0">
       <div className="relative">
         <FontAwesomeIcon
-          className={`absolute right-0 top-0 cursor-pointer text-3xl ${savedProduct ? "text-primary" : "text-caption"}`}
-          icon={savedProduct ? faHeartSolid : faHeartOutline}
+          className={`absolute right-0 top-0 cursor-pointer text-3xl ${isSaved ? "text-primary" : "text-caption"}`}
+          icon={isSaved ? faHeartSolid : faHeartOutline}
           onClick={toggleSavedProduct}
         />
       </div>

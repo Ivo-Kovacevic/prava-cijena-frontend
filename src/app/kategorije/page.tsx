@@ -1,9 +1,16 @@
-"use server";
-
 import { getStaticCategories } from "@/lib/actions";
 import Category from "@/ui/Category";
 import VerticalLine from "@/ui/VerticalLine";
 import GeneralError from "@/ui/icons/GeneralError";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Prava Cijena - Sve kategorije",
+  description: "Pregledaj sve kategorije proizvoda i namirnica.",
+  icons: {
+    icon: "/images/favicon.ico",
+  },
+};
 
 export default async function Page() {
   const categories = await getStaticCategories();

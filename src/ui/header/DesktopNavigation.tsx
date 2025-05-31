@@ -20,7 +20,7 @@ export default function DesktopNavigation() {
         Kategorije
       </Link>
 
-      <Link href="#" className="flex items-center transition hover:text-primary">
+      <Link href="/kosarica" className="flex items-center transition hover:text-primary">
         <FontAwesomeIcon icon={faShoppingCart} className="p-2 text-xl" />
       </Link>
 
