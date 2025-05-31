@@ -26,7 +26,7 @@ export default function SaveStoreForm() {
     if (data && typeof data === "object" && "id" in data) {
       setSavedStores((previousState) => [...previousState, data]);
     }
-  }, [data]);
+  }, [data, setSavedStores]);
 
   useEffect(() => {
     getStores().then((res) => {

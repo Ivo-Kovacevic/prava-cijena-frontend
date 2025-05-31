@@ -6,9 +6,10 @@ import type { Metadata } from "next";
 export async function generateMetadata({
   params,
 }: {
-  params: { categorySlug: string };
+  params: Promise<{ categorySlug: string }>;
 }): Promise<Metadata> {
-  const categoryName = decodeURIComponent(params.categorySlug).replace(/-/g, " ");
+  const { categorySlug } = await params;
+  const categoryName = decodeURIComponent(categorySlug).replace(/-/g, " ");
 
   return {
     title: `Prava Cijena - ${categoryName[0].toUpperCase() + categoryName.slice(1)}`,

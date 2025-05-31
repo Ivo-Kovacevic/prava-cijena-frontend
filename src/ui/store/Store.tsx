@@ -17,7 +17,7 @@ export default function Store({ storeLocation }: { storeLocation: StoreLocationT
         setSavedStores((prev) => prev.filter((store) => store.id !== storeLocation.id));
       }
     }
-  }, [data]);
+  }, [data, setSavedStores, storeLocation.id]);
 
   return (
     <article className="flex h-[390px] min-w-80 flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4 sm:min-w-0">
