@@ -23,8 +23,14 @@ export default function AddToCart({ productId }: { productId: string }) {
         disabled={isPending}
         className={`m-auto flex h-[50px] w-full max-w-[400px] items-center justify-center gap-2 rounded-lg bg-lime-800 bg-opacity-20 px-6 py-3 text-primary transition hover:bg-opacity-30 ${isPending ? "hover:cursor-wait" : ""}`}
       >
-        <FontAwesomeIcon icon={faShoppingCart} className="p-2 text-xl" />
-        <h6>Dodaj</h6>
+        {isPending ? (
+          <div className="loader text-primary" />
+        ) : (
+          <>
+            <FontAwesomeIcon icon={faShoppingCart} className="p-2 text-xl" />
+            <h6>Dodaj</h6>
+          </>
+        )}
       </button>
     </form>
   );

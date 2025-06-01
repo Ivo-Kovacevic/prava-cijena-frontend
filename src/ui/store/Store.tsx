@@ -47,9 +47,9 @@ export default function Store({ storeLocation }: { storeLocation: StoreLocationT
 
         <button
           disabled={isPending}
-          className="h-[50px] w-full rounded-lg bg-lime-800 bg-opacity-20 px-6 py-3 text-primary transition hover:bg-opacity-30"
+          className="flex h-[50px] w-full items-center justify-center rounded-lg bg-lime-800 bg-opacity-20 px-6 py-3 text-primary transition hover:bg-opacity-30"
         >
-          Ukloni trgovinu
+          {isPending ? <div className="loader text-primary" /> : "Ukloni trgovinu"}
         </button>
       </form>
     </article>

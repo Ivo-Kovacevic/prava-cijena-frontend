@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { getProduct } from "@/lib/actions";
 import GeneralError from "@/ui/icons/GeneralError";
-import CartButton from "@/ui/cart/Cart";
+import CartButton from "@/ui/cart/CartButton";
 
 export default async function ProductSidebar({ productSlug }: { productSlug: string }) {
   const product = await getProduct(productSlug);

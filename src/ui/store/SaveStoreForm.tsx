@@ -136,9 +136,9 @@ export default function SaveStoreForm() {
 
         <button
           disabled={!(selectedCity && selectedAddress) || isPending}
-          className={`h-[50px] rounded-lg bg-lime-800 bg-opacity-20 px-6 py-3 text-primary transition ${selectedCity && selectedAddress ? "hover:bg-opacity-30" : "hover:cursor-not-allowed"}`}
+          className={`flex h-[50px] items-center justify-center rounded-lg bg-lime-800 bg-opacity-20 px-6 py-3 text-primary transition ${isPending ? "hover:cursor-wait" : ""} ${selectedCity && selectedAddress ? "hover:bg-opacity-30" : "hover:cursor-not-allowed"}`}
         >
-          Spremi
+          {isPending ? <div className="loader text-primary" /> : "Spremi trgovinu"}
         </button>
       </form>
     </article>
