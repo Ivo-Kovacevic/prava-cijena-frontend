@@ -12,24 +12,30 @@ export default function Product({ product }: { product: ProductType }) {
   const router = useRouter();
 
   return (
-    <article className="flex h-[390px] min-w-80 flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4 sm:min-w-0">
+    <article className="group flex h-[390px] min-w-80 flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4 sm:min-w-0">
       <div className="relative">
         <FavoriteProductButton productId={product.id} />
       </div>
-      <div className="flex h-[200px] justify-center">
-        <Link href={productLink} prefetch={false} onMouseEnter={() => router.prefetch(productLink)}>
-          <Image
-            src={
-              product.imageUrl
-                ? product.imageUrl
-                : "https://res.cloudinary.com/dqbe0apqn/image/upload/unknown.png"
-            }
-            alt={`Slika proizvoda ${product.name}`}
-            width={200}
-            height={200}
-            className="aspect-square h-[200px] object-contain"
-          />
-        </Link>
+      <div className="h-[200px]">
+        <div className="flex h-[180px] justify-center">
+          <Link
+            href={productLink}
+            prefetch={false}
+            onMouseEnter={() => router.prefetch(productLink)}
+          >
+            <Image
+              src={
+                product.imageUrl
+                  ? product.imageUrl
+                  : "https://res.cloudinary.com/dqbe0apqn/image/upload/unknown.png"
+              }
+              alt={`Slika proizvoda ${product.name}`}
+              width={180}
+              height={180}
+              className="aspect-square h-[180px] object-contain drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)] transition group-hover:scale-105"
+            />
+          </Link>
+        </div>
       </div>
 
       <Link href={productLink} prefetch={false} onMouseEnter={() => router.prefetch(productLink)}>

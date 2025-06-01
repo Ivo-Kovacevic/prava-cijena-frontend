@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getProduct } from "@/lib/actions";
 import GeneralError from "@/ui/icons/GeneralError";
 import CartButton from "@/ui/cart/CartButton";
+import FavoriteProductButton from "@/ui/product/FavoriteProductButton";
 
 export default async function ProductSidebar({ productSlug }: { productSlug: string }) {
   const product = await getProduct(productSlug);
@@ -11,6 +12,9 @@ export default async function ProductSidebar({ productSlug }: { productSlug: str
 
   return (
     <div className="sticky top-5 flex flex-col justify-start gap-5">
+      <div className="relative">
+        <FavoriteProductButton productId={product.data.id} />
+      </div>
       <div className="relative flex h-[250px] w-full items-center justify-center">
         <Image
           src={
