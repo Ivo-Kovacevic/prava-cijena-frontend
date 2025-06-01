@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 // Define your routes
 const GUEST_ONLY_ROUTES = ["/prijava", "/registracija"];
-const PROTECTED_ROUTES = ["/profil"];
+const PROTECTED_ROUTES = ["/profil", "/kosarica"];
 const HOME_ROUTE = "/";
 const LOGIN_ROUTE = "/prijava";
 
@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(HOME_ROUTE, request.url));
   }
 
-  // User is not authenticated and trying to access a protected route (/profil)
+  // User is not authenticated and trying to access a protected route (/profil, /kosarica)
   if (!isAuthenticated && PROTECTED_ROUTES.includes(pathname)) {
     console.log(
       `Middleware: Unauthenticated user trying to access protected route ${pathname}. Redirecting to ${LOGIN_ROUTE}.`,
@@ -35,5 +35,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/prijava", "/registracija", "/profil"],
+  matcher: ["/prijava", "/registracija", "/profil", "/kosarica"],
 };

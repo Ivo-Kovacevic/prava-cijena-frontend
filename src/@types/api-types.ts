@@ -28,7 +28,7 @@ export type StoreLocationType = {
   city: string;
   address: string;
   locationProduct: ProductStoreType;
-  products: ProductType[];
+  locationProducts: ProductStoreType[];
   store: StoreType;
   createdAt: Date;
   updatedAt: Date;
@@ -73,6 +73,7 @@ export type ProductStoreType = {
   store: StoreType;
   productUrl: string;
   latestPrice: number;
+  product: ProductType;
   createdAt: Date;
   updatedAt: Date;
 };

@@ -10,7 +10,7 @@ export async function getCart() {
   const tokenValue = cookieStore.get("jwtToken")?.value;
 
   return await tryCatch<StoreLocationType[]>(
-    fetch(`${API_URL}/api/cart`, {
+    fetch(`${API_URL}/api/cart/store-locations`, {
       cache: "no-store",
       headers: {
         ...(tokenValue && { Cookie: `jwtToken=${tokenValue}` }),
