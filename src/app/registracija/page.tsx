@@ -5,8 +5,9 @@ import { useState } from "react";
 import { useAuth } from "@/context/authContext";
 
 export default function Page() {
-  const [error, setError] = useState<string | null>(null);
   const { register } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -21,10 +22,17 @@ export default function Page() {
       return;
     }
 
-    const result = await register(email, password);
+    try {
+      setIsLoading(true);
+      const result = await register(email, password);
 
-    if (typeof result === "string") {
-      setError(result);
+      if (typeof result === "string") {
+        setError(result);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -50,6 +58,7 @@ export default function Page() {
             placeholder="Lozinka"
             name="password"
             className="w-full rounded-inner border border-caption bg-background p-2 text-[1.125rem] focus:outline-1 md:text-[1.25rem]"
+            minLength={6}
             required
           />
         </div>
@@ -61,12 +70,16 @@ export default function Page() {
             placeholder="Lozinka"
             name="confirm-password"
             className="w-full rounded-inner border border-caption bg-background p-2 text-[1.125rem] focus:outline-1 md:text-[1.25rem]"
+            minLength={6}
             required
           />
         </div>
 
-        <button className="rounded-xl bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-90 focus:outline-foreground">
-          Registriraj se
+        <button
+          disabled={isLoading}
+          className="flex h-14 items-center justify-center rounded-xl bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-90 focus:outline-foreground"
+        >
+          {isLoading ? <div className="loader" /> : "Prijavi se"}
         </button>
       </form>
 
@@ -82,7 +95,9 @@ export default function Page() {
       </div>
 
       <div className="relative -z-10 flex justify-center">
-        <div className="absolute text-red-800 transition-transform duration-300">{error}</div>
+        <div className="absolute text-red-800 transition-transform duration-300">
+          {error?.split(",").map((msg, i) => <p key={i}>{msg.trim()}</p>)}
+        </div>
       </div>
     </div>
   );

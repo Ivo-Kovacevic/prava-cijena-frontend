@@ -6,6 +6,7 @@ import { useAuth } from "@/context/authContext";
 
 export default function Page() {
   const { login } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -15,10 +16,17 @@ export default function Page() {
     const email = formData.get("email")?.toString() || "";
     const password = formData.get("password")?.toString() || "";
 
-    const result = await login(email, password);
+    try {
+      setIsLoading(true);
+      const result = await login(email, password);
 
-    if (typeof result === "string") {
-      setError(result);
+      if (typeof result === "string") {
+        setError(result);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -49,8 +57,11 @@ export default function Page() {
           />
         </div>
 
-        <button className="rounded-xl bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-90 focus:outline-foreground">
-          Prijavi se
+        <button
+          disabled={isLoading}
+          className="flex items-center justify-center rounded-xl bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-90 focus:outline-foreground"
+        >
+          {isLoading ? <div className="loader" /> : "Prijavi se"}
         </button>
       </form>
 
