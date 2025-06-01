@@ -59,7 +59,7 @@ export default function Page() {
 
         <button
           disabled={isLoading}
-          className="flex items-center justify-center rounded-xl bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-90 focus:outline-foreground"
+          className="flex h-14 items-center justify-center rounded-xl bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-90 focus:outline-foreground"
         >
           {isLoading ? <div className="loader" /> : "Prijavi se"}
         </button>
