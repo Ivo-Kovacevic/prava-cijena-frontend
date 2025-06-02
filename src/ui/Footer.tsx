@@ -32,7 +32,11 @@ export default function Footer() {
         <Link className="w-fit hover:underline focus:outline-background" href="/kategorije">
           Kategorije
         </Link>
-        <Link className="w-fit hover:underline focus:outline-background" href="/kosarica">
+        <Link
+          className="w-fit hover:underline focus:outline-background"
+          href="/kosarica"
+          prefetch={false}
+        >
           Košarica
         </Link>
       </article>
