@@ -5,8 +5,10 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useActionState, useEffect } from "react";
 import { removeProductFromCart } from "@/lib/cartActions";
 import { useUser } from "@/context/userContext";
+import { useNotification } from "@/context/notificationContext";
 
 export default function RemoveFromCart({ productId }: { productId: string }) {
+  const { setNotification } = useNotification();
   const { setCart } = useUser();
   const [data, formAction, isPending] = useActionState(removeProductFromCart, undefined);
 
@@ -14,6 +16,11 @@ export default function RemoveFromCart({ productId }: { productId: string }) {
     if (data) {
       if (data === 204) {
         setCart((prev) => prev.filter((product) => product.id !== productId));
+
+        setNotification(null);
+        setTimeout(() => {
+          setNotification("Uklonjeno iz košarice");
+        }, 0);
       }
     }
   }, [data, setCart, productId]);

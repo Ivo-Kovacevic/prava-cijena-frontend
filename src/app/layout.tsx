@@ -7,6 +7,8 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { AuthProvider } from "@/context/authContext";
 import { UserProvider } from "@/context/userContext";
+import { NotificationProvider } from "@/context/notificationContext";
+import Notification from "@/ui/notification/Notification";
 
 config.autoAddCss = false;
 
@@ -28,13 +30,17 @@ export default function RootLayout({
       <body
         className={`${poppins.className} flex min-h-screen flex-col gap-6 antialiased md:gap-10`}
       >
-        <AuthProvider>
-          <UserProvider>
-            <Header />
-            {children}
-            <Footer />
-          </UserProvider>
-        </AuthProvider>
+        <NotificationProvider>
+          <AuthProvider>
+            <UserProvider>
+              <Header />
+              {children}
+              <Footer />
+
+              <Notification />
+            </UserProvider>
+          </AuthProvider>
+        </NotificationProvider>
       </body>
     </html>
   );

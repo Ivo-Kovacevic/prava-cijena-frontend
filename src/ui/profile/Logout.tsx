@@ -3,8 +3,10 @@
 import { useAuth } from "@/context/authContext";
 import { useEffect, useState } from "react";
 import { useUser } from "@/context/userContext";
+import { useNotification } from "@/context/notificationContext";
 
 export function Logout() {
+  const { setNotification } = useNotification();
   const { user, logout } = useAuth();
   const { setSavedProducts, setSavedStores } = useUser();
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +24,11 @@ export function Logout() {
     try {
       setIsLoading(true);
       await logout();
+
+      setNotification(null);
+      setTimeout(() => {
+        setNotification("Uspješna odjava");
+      }, 0);
     } catch (e) {
       console.error(e);
     } finally {

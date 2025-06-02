@@ -5,8 +5,10 @@ import Image from "next/image";
 import { useActionState, useEffect } from "react";
 import { removeSavedStore } from "@/lib/savedStoresActions";
 import { useUser } from "@/context/userContext";
+import { useNotification } from "@/context/notificationContext";
 
 export default function Store({ storeLocation }: { storeLocation: StoreLocationType }) {
+  const { setNotification } = useNotification();
   const { setSavedStores } = useUser();
   const [data, formAction, isPending] = useActionState(removeSavedStore, undefined);
 
@@ -14,6 +16,11 @@ export default function Store({ storeLocation }: { storeLocation: StoreLocationT
     if (data) {
       if (data === 204) {
         setSavedStores((prev) => prev.filter((store) => store.id !== storeLocation.id));
+
+        setNotification(null);
+        setTimeout(() => {
+          setNotification("Uklonjena trgovina");
+        }, 0);
       }
     }
   }, [data, setSavedStores, storeLocation.id]);

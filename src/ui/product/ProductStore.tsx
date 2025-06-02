@@ -1,8 +1,11 @@
+"use client";
+
 import { StoreType } from "@/@types/api-types";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowTrendUp } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import { useNotification } from "@/context/notificationContext";
 
 export default function ProductStore({
   store,
@@ -11,6 +14,15 @@ export default function ProductStore({
   store: StoreType;
   productSlug: string;
 }) {
+  const { setNotification } = useNotification();
+
+  const handleUnfinishedFeature = () => {
+    setNotification(null);
+    setTimeout(() => {
+      setNotification("Funkcija trenutno nije dostupna");
+    }, 0);
+  };
+
   return (
     <article
       key={store.id}
@@ -41,10 +53,16 @@ export default function ProductStore({
         </div>
       </div>
       <div className="flex flex-col items-end justify-center gap-5">
-        <Link href="#" className="flex items-center gap-2 transition hover:text-primary">
+        <span
+          role="button"
+          tabIndex={0}
+          onClick={handleUnfinishedFeature}
+          onKeyDown={(e) => e.key === "Enter" && handleUnfinishedFeature()}
+          className="flex cursor-pointer items-center gap-2 transition hover:text-primary"
+        >
           <FontAwesomeIcon icon={faArrowTrendUp} className="text-xl" />
           <h6>Povijest cijene</h6>
-        </Link>
+        </span>
         {/*<a
           href={store?.productUrl}
           target="_blank"

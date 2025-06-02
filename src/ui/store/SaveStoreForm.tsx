@@ -5,8 +5,10 @@ import { getStoreLocations, getStores } from "@/lib/actions";
 import { StoreLocationType, StoreType } from "@/@types/api-types";
 import { saveStoreLocation } from "@/lib/savedStoresActions";
 import { useUser } from "@/context/userContext";
+import { useNotification } from "@/context/notificationContext";
 
 export default function SaveStoreForm() {
+  const { setNotification } = useNotification();
   const { setSavedStores } = useUser();
 
   const [stores, setStores] = useState<StoreType[]>([]);
@@ -24,8 +26,13 @@ export default function SaveStoreForm() {
   useEffect(() => {
     if (data && typeof data === "object" && "id" in data) {
       setSavedStores((previousState) => [...previousState, data]);
+
+      setNotification(null);
+      setTimeout(() => {
+        setNotification("Dodana trgovina");
+      }, 0);
     }
-  }, [data, setSavedStores]);
+  }, [data, setSavedStores, setNotification]);
 
   useEffect(() => {
     getStores().then((res) => {

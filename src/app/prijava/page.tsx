@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useAuth } from "@/context/authContext";
+import { useNotification } from "@/context/notificationContext";
 
 export default function Page() {
+  const { setNotification } = useNotification();
   const { login } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -22,7 +24,13 @@ export default function Page() {
 
       if (typeof result === "string") {
         setError(result);
+        return;
       }
+
+      setNotification(null);
+      setTimeout(() => {
+        setNotification("Uspješna prijava");
+      }, 0);
     } catch (e) {
       console.error(e);
     } finally {

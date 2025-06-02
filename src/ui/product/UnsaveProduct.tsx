@@ -4,18 +4,25 @@ import { useActionState, useEffect } from "react";
 import { useUser } from "@/context/userContext";
 import Heart from "@/ui/icons/Heart";
 import { removeFavoriteProduct } from "@/lib/savedProductsActions";
+import { useNotification } from "@/context/notificationContext";
 
 export default function UnsaveProduct({ productId }: { productId: string }) {
   const { setSavedProducts } = useUser();
+  const { setNotification } = useNotification();
   const [data, formAction, isPending] = useActionState(removeFavoriteProduct, undefined);
 
   useEffect(() => {
     if (data) {
       if (data === 204) {
         setSavedProducts((prev) => prev.filter((product) => product.id !== productId));
+
+        setNotification(null);
+        setTimeout(() => {
+          setNotification("Uklonjeno iz omiljenih proizvoda");
+        }, 0);
       }
     }
-  }, [data, productId]);
+  }, [data, productId, setNotification]);
 
   return (
     <form action={formAction}>
