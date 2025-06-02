@@ -23,7 +23,7 @@ export default function RemoveFromCart({ productId }: { productId: string }) {
         }, 0);
       }
     }
-  }, [data, setCart, productId]);
+  }, [data, setCart, productId, setNotification]);
 
   return (
     <form action={formAction}>

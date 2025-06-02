@@ -22,7 +22,7 @@ export default function UnsaveProduct({ productId }: { productId: string }) {
         }, 0);
       }
     }
-  }, [data, productId, setNotification]);
+  }, [data, productId, setNotification, setSavedProducts]);
 
   return (
     <form action={formAction}>

@@ -23,7 +23,7 @@ export default function Store({ storeLocation }: { storeLocation: StoreLocationT
         }, 0);
       }
     }
-  }, [data, setSavedStores, storeLocation.id]);
+  }, [data, setSavedStores, storeLocation.id, setNotification]);
 
   return (
     <article className="flex h-[390px] min-w-80 flex-col gap-2 rounded-xl border border-black border-opacity-20 p-4 sm:min-w-0">
