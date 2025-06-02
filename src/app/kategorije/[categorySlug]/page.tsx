@@ -5,6 +5,7 @@ import Product from "@/ui/Product";
 import GeneralError from "@/ui/icons/GeneralError";
 import Pagination from "@/ui/Pagination";
 import { API_URL } from "@/utils/config";
+import { getProizvodForm } from "@/lib/helpers";
 
 type Params = {
   categorySlug: string;
@@ -43,7 +44,7 @@ export default async function Page({
   return (
     <>
       <h3 className="col-span-full">
-        {numOfProducts} {numOfProducts % 10 === 1 ? "proizvod" : "proizvoda"}
+        {numOfProducts} {getProizvodForm(numOfProducts)}
       </h3>
 
       {pagination.data.products.map((product) => (

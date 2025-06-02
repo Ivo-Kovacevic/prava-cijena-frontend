@@ -5,7 +5,7 @@ export default function Page() {
       <section className="col-span-3 flex flex-col gap-10">
         <div>
           <h3>Politika privatnosti</h3>
-          <h6 className="text-caption">Posljednje ažuriranje: 2.6.2025</h6>
+          <h6 className="text-caption">Posljednje ažuriranje: 2.6.2025.</h6>
         </div>
         <p>
           Vaša privatnost nam je bitna. Prava Cijena poštuje vaša prava i privatnost. Ova politika

@@ -7,3 +7,12 @@ export function getTrgovinaForm(n: number): string {
   if (last >= 2 && last <= 4) return "trgovine";
   return "trgovina";
 }
+
+export function getProizvodForm(n: number): string {
+  const lastTwo = n % 100;
+  const last = n % 10;
+
+  if (lastTwo >= 11 && lastTwo <= 14) return "proizvoda";
+  if (last === 1) return "proizvod";
+  return "proizvoda";
+}

@@ -1,6 +1,7 @@
 import { ProductType } from "@/@types/api-types";
 import Link from "next/link";
 import Image from "next/image";
+import { getTrgovinaForm } from "@/lib/helpers";
 
 export default function SearchProduct({ product }: { product: ProductType }) {
   const productLink = `/proizvod/${product.slug}`;
@@ -26,7 +27,9 @@ export default function SearchProduct({ product }: { product: ProductType }) {
         <Link href={productLink} className="text-h5 transition hover:text-primary">
           {product.name}
         </Link>
-        <h6 className="text-caption">7 trgovina</h6>
+        <h6 className="text-caption">
+          {product.numberOfStores} {getTrgovinaForm(product.numberOfStores)}
+        </h6>
       </div>
     </li>
   );

@@ -4,6 +4,7 @@ import { searchProducts } from "@/lib/actions";
 import Filter from "@/ui/icons/Filter";
 import Product from "@/ui/Product";
 import GeneralError from "@/ui/icons/GeneralError";
+import { getProizvodForm } from "@/lib/helpers";
 
 export default async function Page({
   searchParams,
@@ -13,7 +14,7 @@ export default async function Page({
   const resolvedParams = await searchParams;
   const searchTerm = resolvedParams["izraz"];
 
-  const products = await searchProducts(searchTerm, 1, 80);
+  const products = await searchProducts(searchTerm, 1, 60);
 
   if (products.error) {
     return <GeneralError />;
@@ -34,7 +35,7 @@ export default async function Page({
 
       <section className="flex flex-col gap-5 lg:col-span-2 xl:col-span-3 2xl:col-span-4">
         <h3>
-          {numOfProducts} {numOfProducts % 10 === 1 ? "proizvod" : "proizvoda"}
+          {numOfProducts} {getProizvodForm(numOfProducts)}
         </h3>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
