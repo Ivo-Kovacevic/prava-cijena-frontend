@@ -28,7 +28,7 @@ export default function CartLocation({ location }: { location: StoreLocationType
           &nbsp;€
         </h4>
         <AccordionButton
-          className="h-min min-h-[15px] w-min min-w-[25px] stroke-caption transition hover:cursor-pointer hover:stroke-foreground"
+          className="h-min max-h-[15px] min-h-[15px] min-w-[25px] max-w-[25px] stroke-caption transition hover:cursor-pointer hover:stroke-foreground"
           onClick={() => setIsOpen(!isOpen)}
         />
       </div>
