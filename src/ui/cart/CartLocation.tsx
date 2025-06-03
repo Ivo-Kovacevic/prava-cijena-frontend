@@ -3,15 +3,35 @@
 import Image from "next/image";
 import AccordionButton from "@/ui/icons/AccordionButton";
 import { StoreLocationType } from "@/@types/api-types";
-import { useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import Link from "next/link";
 import XButton from "@/ui/icons/XButton";
+import { removeProductFromCart } from "@/lib/cartActions";
+import { useNotification } from "@/context/notificationContext";
+import { useUser } from "@/context/userContext";
 
 export default function CartLocation({ location }: { location: StoreLocationType }) {
+  const { setNotification } = useNotification();
+  const { cart, setCart } = useUser();
   const [isOpen, setIsOpen] = useState(false);
+  const [productIdToRemove, setProductIdToRemove] = useState<string | null>(null);
+  const [data, formAction, isPending] = useActionState(removeProductFromCart, undefined);
+
+  useEffect(() => {
+    if (data === 204 && productIdToRemove) {
+      setCart((prev) => prev.filter((product) => product.id !== productIdToRemove));
+
+      setNotification(null);
+      setTimeout(() => {
+        setNotification("Uklonjeno iz košarice");
+      }, 0);
+
+      setProductIdToRemove(null);
+    }
+  }, [data, productIdToRemove, setCart, setNotification]);
 
   return (
-    <div key={location.id} className="mx-5 flex flex-col gap-5">
+    <div key={location.id} className="mx-5">
       <div className="flex items-center gap-2 md:gap-4">
         <Image
           src={location.store.imageUrl}
@@ -24,7 +44,10 @@ export default function CartLocation({ location }: { location: StoreLocationType
           {location.city}, {location.address}
         </h6>
         <h4 className="ml-auto w-fit rounded-lg bg-lime-800 bg-opacity-20 px-5 py-2 text-primary sm:px-6 sm:py-3">
-          {location.locationProducts.reduce((sum, p) => sum + p.latestPrice, 0).toFixed(2)}
+          {location.locationProducts
+            .filter((productStore) => cart.some((item) => item.id === productStore.productId))
+            .reduce((sum, p) => sum + p.latestPrice, 0)
+            .toFixed(2)}
           &nbsp;€
         </h4>
         <AccordionButton
@@ -38,36 +61,47 @@ export default function CartLocation({ location }: { location: StoreLocationType
         }`}
       >
         <div className="flex flex-col gap-5">
-          {location.locationProducts.map((productStore) => (
-            <div key={productStore.product.id} className="group flex items-center gap-4">
-              <Link
-                href={`/proizvod/${productStore.product.slug}`}
-                className="flex h-20 min-w-12 max-w-12 items-center sm:w-20 sm:max-w-max"
-              >
-                <Image
-                  src={
-                    productStore.product.imageUrl
-                      ? productStore.product.imageUrl
-                      : "https://res.cloudinary.com/dqbe0apqn/image/upload/unknown.png"
-                  }
-                  alt={productStore.product.name}
-                  width={80}
-                  height={80}
-                  className="object-contain drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)] transition group-hover:scale-105"
-                />
-              </Link>
-              <div className="flex flex-col justify-center">
+          {location.locationProducts
+            .filter((productStore) => cart.some((item) => item.id === productStore.productId))
+            .map((productStore) => (
+              <div key={productStore.product.id} className="group flex items-center gap-4">
                 <Link
                   href={`/proizvod/${productStore.product.slug}`}
-                  className="transtion line-clamp-2 hover:text-primary"
+                  className="flex h-20 min-w-12 max-w-12 items-center sm:w-20 sm:max-w-max"
                 >
-                  {productStore.product.name}
+                  <Image
+                    src={
+                      productStore.product.imageUrl
+                        ? productStore.product.imageUrl
+                        : "https://res.cloudinary.com/dqbe0apqn/image/upload/unknown.png"
+                    }
+                    alt={productStore.product.name}
+                    width={80}
+                    height={80}
+                    className="object-contain drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)] transition group-hover:scale-105"
+                  />
                 </Link>
-                <h4 className="text-primary">{productStore.latestPrice} €</h4>
+                <div className="flex flex-col justify-center">
+                  <Link
+                    href={`/proizvod/${productStore.product.slug}`}
+                    className="transtion line-clamp-2 hover:text-primary"
+                  >
+                    {productStore.product.name}
+                  </Link>
+                  <h4 className="text-primary">{productStore.latestPrice} €</h4>
+                </div>
+                <form
+                  action={formAction}
+                  onSubmit={() => setProductIdToRemove(productStore.productId)}
+                  className="ml-auto"
+                >
+                  <input type="hidden" name="productId" value={productStore.productId} />
+                  <button disabled={isPending}>
+                    <XButton className="h-6 min-h-6 w-6 min-w-6 stroke-[1.5px] text-caption hover:cursor-pointer hover:text-foreground" />
+                  </button>
+                </form>
               </div>
-              <XButton className="round ml-auto h-6 min-h-6 w-6 min-w-6 stroke-[1.5px] text-caption hover:cursor-pointer hover:text-foreground" />
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>

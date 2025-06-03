@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 
 // Generate pagination array based on current page and total pages
 function generatePagination(currentPage: number, totalPages: number) {
@@ -40,9 +41,15 @@ export default function Pagination({
 }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  console.log("Pagination component: currentPage =", currentPage, "totalPages =", totalPages);
   const allPages = generatePagination(currentPage, totalPages);
-  console.log("Pagination component: allPages =", JSON.stringify(allPages));
+  const [changedPage, setChangedPage] = useState(false);
+
+  useEffect(() => {
+    if (changedPage) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setChangedPage(false);
+    }
+  }, [changedPage]);
 
   const createPageURL = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams);
@@ -78,6 +85,7 @@ export default function Pagination({
             page={page}
             position={position}
             isActive={currentPage === page}
+            onClick={() => setChangedPage(true)}
           />
         );
       })}
@@ -101,11 +109,13 @@ function PaginationNumber({
   href,
   isActive,
   position,
+  onClick,
 }: {
   page: number | string;
   href: string;
-  position?: "first" | "last" | "middle" | "single";
   isActive: boolean;
+  position?: "first" | "last" | "middle" | "single";
+  onClick?: () => void;
 }) {
   let className = "flex sm:h-12 sm:w-12 h-10 w-10 rounded-inner items-center justify-center border";
 
@@ -123,7 +133,7 @@ function PaginationNumber({
       <div className="rounded-full border border-caption p-1" />
     </>
   ) : (
-    <Link href={href} className={className} prefetch={false}>
+    <Link href={href} className={className} prefetch={false} onClick={onClick}>
       <h6>{page}</h6>
     </Link>
   );

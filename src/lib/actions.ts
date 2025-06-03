@@ -2,7 +2,7 @@
 
 import {
   CategoryType,
-  Pagination,
+  PaginationType,
   ProductType,
   StoreLocationType,
   StoreType,
@@ -19,7 +19,7 @@ export async function getStaticCategories() {
 }
 
 export async function getStaticProducts() {
-  return await tryCatch<Pagination>(
+  return await tryCatch<PaginationType>(
     fetch(`${API_URL}/api/categories/mlijeko/products?limit=10`).then((res) => res.json()),
   );
 }
@@ -40,7 +40,7 @@ export async function getProducts(
   const cookieStore = await cookies();
   const tokenValue = cookieStore.get("jwtToken")?.value;
 
-  return await tryCatch<Pagination>(
+  return await tryCatch<PaginationType>(
     fetch(`${API_URL}/api/categories/${category}/products?page=${page}&limit=${limit}`, {
       ...(page === 1
         ? { next: { revalidate: false } } // Cache only page 1
@@ -118,8 +118,6 @@ export async function login(email: string, password: string) {
       body: JSON.stringify({ email, password }),
     }),
   );
-
-  console.dir(response);
 
   if (response.error) {
     return response.error.message;

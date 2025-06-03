@@ -80,10 +80,10 @@ export type ProductStoreType = {
 
 export type SearchResult = {
   products: ProductType[];
-  pagination: Pagination;
+  pagination: PaginationType;
 };
 
-export type Pagination = {
+export type PaginationType = {
   currentPage: number;
   totalPages: number;
   products: ProductType[];

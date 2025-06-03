@@ -54,8 +54,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }
 
     setCart(res.data);
-    console.dir("CART");
-    // console.dir(res.data);
   };
 
   useEffect(() => {

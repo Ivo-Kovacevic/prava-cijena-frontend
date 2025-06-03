@@ -27,9 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${poppins.className} flex min-h-screen flex-col gap-6 antialiased md:gap-10`}
-      >
+      <body className={`${poppins.className} flex min-h-screen flex-col gap-6 md:gap-10`}>
         <NotificationProvider>
           <AuthProvider>
             <UserProvider>
