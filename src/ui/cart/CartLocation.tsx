@@ -28,7 +28,7 @@ export default function CartLocation({ location }: { location: StoreLocationType
           &nbsp;€
         </h4>
         <AccordionButton
-          className="h-min max-h-[15px] min-h-[15px] min-w-[25px] max-w-[25px] stroke-caption transition hover:cursor-pointer hover:stroke-foreground"
+          className={`h-min max-h-[15px] min-h-[15px] min-w-[25px] max-w-[25px] stroke-caption transition duration-300 hover:cursor-pointer hover:stroke-foreground ${isOpen ? "rotate-180" : ""}`}
           onClick={() => setIsOpen(!isOpen)}
         />
       </div>
