@@ -6,7 +6,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
       <section className="relative col-span-1 h-full w-full flex-col">
         <h3>Pametna košarica</h3>
       </section>
-      <section className="col-span-3 flex flex-col gap-5">{children}</section>
+      <section className="col-span-3 flex min-h-[500px] flex-col gap-5">{children}</section>
     </main>
   );
 }
