@@ -3,7 +3,7 @@
 import { StoreType } from "@/@types/api-types";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faArrowTrendUp } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faArrowTrendUp, faShop } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useNotification } from "@/context/notificationContext";
 
@@ -63,14 +63,18 @@ export default function ProductStore({
           <FontAwesomeIcon icon={faArrowTrendUp} className="text-xl" />
           <h6>Povijest cijene</h6>
         </span>
-        {/*<a
-          href={store?.productUrl}
-          target="_blank"
-          className="flex items-center gap-2 transition hover:text-primary"
-        >
-          <FontAwesomeIcon icon={faShop} />
-          <h6>U trgovinu</h6>
-        </a>*/}
+        {store.productUrl ? (
+          <a
+            href={store.productUrl}
+            target="_blank"
+            className="flex items-center gap-2 transition hover:text-primary"
+          >
+            <FontAwesomeIcon icon={faShop} />
+            <h6>U trgovinu</h6>
+          </a>
+        ) : (
+          ""
+        )}
       </div>
     </article>
   );

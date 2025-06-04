@@ -17,6 +17,7 @@ export type StoreType = {
   slug: string;
   storeUrl: string;
   imageUrl: string;
+  productUrl: string | null;
   price: number;
   createdAt: Date;
   updatedAt: Date;
