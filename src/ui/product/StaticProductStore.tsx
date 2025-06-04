@@ -1,7 +1,7 @@
 import { StoreType } from "@/@types/api-types";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faArrowTrendUp } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faArrowTrendUp, faShop } from "@fortawesome/free-solid-svg-icons";
 
 export default function StaticProductStore({ store }: { store: StoreType }) {
   return (
@@ -30,6 +30,10 @@ export default function StaticProductStore({ store }: { store: StoreType }) {
         <h6 className="flex items-center gap-2 transition hover:text-primary">
           <FontAwesomeIcon icon={faArrowTrendUp} className="text-xl" />
           <div>Povijest cijene</div>
+        </h6>
+        <h6 className="flex items-center gap-2 transition hover:text-primary">
+          <FontAwesomeIcon icon={faShop} />
+          <div>U trgovinu</div>
         </h6>
       </div>
     </article>
