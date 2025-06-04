@@ -45,17 +45,10 @@ export default function SaveStoreForm() {
       getStoreLocations(selectedStore).then((res) => {
         if (!res.error) {
           setStoreLocations(res.data);
-          const cityCounts: Record<string, number> = {};
 
-          res.data.forEach((sl) => {
-            cityCounts[sl.city] = (cityCounts[sl.city] || 0) + 1;
-          });
+          const cities = [...new Set(res.data.map((sl) => sl.city))];
 
-          const sortedCities = Object.entries(cityCounts)
-            .sort((a, b) => b[1] - a[1])
-            .map(([city]) => city);
-
-          setCities(sortedCities);
+          setCities(cities);
         }
       });
     }
@@ -65,7 +58,8 @@ export default function SaveStoreForm() {
     if (selectedCity) {
       const filteredAddresses = storeLocations
         .filter((sl) => sl.city === selectedCity)
-        .map((sl) => sl.address);
+        .map((sl) => sl.address)
+        .sort();
 
       setAddresses(filteredAddresses);
     } else {
@@ -101,6 +95,7 @@ export default function SaveStoreForm() {
             onChange={(e) => setSelectedCity(e.target.value)}
             disabled={!cities.length}
             className={`w-full rounded-inner bg-background p-2 ${selectedStore ? "hover:cursor-pointer" : "hover:cursor-not-allowed"}`}
+            required
           >
             <option value="">Grad</option>
             {cities.map((city) => (
@@ -118,6 +113,7 @@ export default function SaveStoreForm() {
             onChange={(e) => setSelectedAddress(e.target.value)}
             disabled={!addresses.length}
             className={`w-full rounded-inner bg-background p-2 ${selectedCity ? "hover:cursor-pointer" : "hover:cursor-not-allowed"}`}
+            required
           >
             <option value="">Adresa</option>
             {addresses.map((addr) => (

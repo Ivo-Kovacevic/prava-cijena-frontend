@@ -3,6 +3,7 @@ import Category from "@/ui/Category";
 import VerticalLine from "@/ui/VerticalLine";
 import GeneralError from "@/ui/icons/GeneralError";
 import type { Metadata } from "next";
+import { categoryOrder } from "@/lib/helpers";
 
 export const metadata: Metadata = {
   title: "Prava Cijena - Sve kategorije",
@@ -19,6 +20,10 @@ export default async function Page() {
     return <GeneralError />;
   }
 
+  const sortedCategories = [...categories.data].sort((a, b) => {
+    return categoryOrder.indexOf(a.name) - categoryOrder.indexOf(b.name);
+  });
+
   return (
     <main className="mb-32 flex flex-col gap-5">
       <section className="px-4 md:px-10">
@@ -26,12 +31,15 @@ export default async function Page() {
       </section>
 
       <section className="scrollbar-custom flex flex-col gap-y-5">
-        {categories.data.map((category) => (
-          <div key={category.id} className="flex gap-x-5 overflow-x-scroll pl-4 md:pl-10">
+        {sortedCategories.map((category) => (
+          <div
+            key={category.id}
+            className="scrollbar-none-desktop scrollbar-thin-desktop flex gap-x-5 overflow-x-scroll pl-4 md:pl-10"
+          >
             <Category category={category} />
             <VerticalLine className="my-8 opacity-50" />
 
-            <div className="flex gap-x-5 rounded-l-outer pr-4 md:overflow-x-scroll md:pr-10">
+            <div className="scrollbar-none-mobile scrollbar-thin-mobile flex gap-x-5 rounded-l-outer pr-4 md:overflow-x-scroll md:pr-10">
               {category.subcategories.map((subcategory) => (
                 <Category key={subcategory.id} category={subcategory} />
               ))}

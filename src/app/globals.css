@@ -61,6 +61,26 @@ h6 {
     scrollbar-color: var(--caption) var(--background);
 }
 
+@media (width >= 768px) {
+    .scrollbar-none-desktop {
+        scrollbar-width: none;
+    }
+
+    .scrollbar-thin-mobile {
+        scrollbar-width: thin;
+    }
+}
+
+@media (width < 768px) {
+    .scrollbar-thin-desktop {
+        scrollbar-width: thin;
+    }
+
+    .scrollbar-none-mobile {
+        scrollbar-width: none;
+    }
+}
+
 .loader {
     height: 30px;
     aspect-ratio: 2.5;

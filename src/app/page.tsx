@@ -8,6 +8,7 @@ import Category from "@/ui/Category";
 import dummyProductStores from "@/const/dummyProductStores";
 import GeneralError from "@/ui/icons/GeneralError";
 import StaticProductStore from "@/ui/product/StaticProductStore";
+import { categoryOrder } from "@/lib/helpers";
 
 export default async function Page() {
   const pagination = await getStaticProducts();
@@ -16,6 +17,10 @@ export default async function Page() {
   if (pagination.error || categories.error) {
     return <GeneralError />;
   }
+
+  const sortedCategories = [...categories.data].sort((a, b) => {
+    return categoryOrder.indexOf(a.name) - categoryOrder.indexOf(b.name);
+  });
 
   return (
     <main className="flex flex-col gap-32 py-16">
@@ -59,7 +64,7 @@ export default async function Page() {
       <section className="scrollbar-custom flex flex-col gap-y-5">
         <h3 className="px-4 md:px-10">Glavne kategorije</h3>
         <div className="flex gap-x-5 overflow-x-auto px-4 pb-4 md:px-10">
-          {categories.data.map((category) => (
+          {sortedCategories.map((category) => (
             <Category key={category.id} category={category} />
           ))}
         </div>

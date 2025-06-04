@@ -14,15 +14,9 @@ export default function StoreList({ storeLocations }: { storeLocations: StoreLoc
 
   return (
     <>
-      {savedStores.length > 0 ? (
-        savedStores.map((storeLocation) => (
-          <Store key={storeLocation.id} storeLocation={storeLocation} />
-        ))
-      ) : (
-        <div className="col-span-full flex h-[390px] items-center justify-center text-caption">
-          Nema omiljenih proizvoda
-        </div>
-      )}
+      {savedStores.map((storeLocation) => (
+        <Store key={storeLocation.id} storeLocation={storeLocation} />
+      ))}
     </>
   );
 }
