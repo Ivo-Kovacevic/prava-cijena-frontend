@@ -2,14 +2,14 @@
 
 import Product from "@/ui/Product";
 import SeeMore from "@/ui/SeeMore";
-import { getStaticCategories, getStaticProducts } from "@/lib/actions";
+import { getStaticCategories, getStaticCategoryProducts } from "@/lib/actions";
 import Category from "@/ui/Category";
 import GeneralError from "@/ui/icons/GeneralError";
 import { categoryOrder } from "@/lib/helpers";
 import HeroSection from "@/ui/hero-section/HeroSection";
 
 export default async function Page() {
-  const pagination = await getStaticProducts();
+  const pagination = await getStaticCategoryProducts("mlijeko", 10);
   const categories = await getStaticCategories();
 
   if (pagination.error || categories.error) {

@@ -8,7 +8,7 @@ export default function AsianFoodArticle() {
         Istraži okuse Istoka – najbolji proizvodi azijske kuhinje na jednom mjestu.
       </h5>
       <Link
-        href="/kategorije/riza"
+        href="/clanci/tjedan-azijske-kuhinje"
         className="w-fit rounded-inner bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-95 focus:outline-foreground"
       >
         Istraži ponudu

@@ -18,9 +18,21 @@ export async function getStaticCategories() {
   );
 }
 
-export async function getStaticProducts() {
+export async function getStaticCategoryProducts(category: string, limit: number) {
   return await tryCatch<PaginationType>(
-    fetch(`${API_URL}/api/categories/mlijeko/products?limit=10`).then((res) => res.json()),
+    fetch(`${API_URL}/api/categories/${category}/products?limit=${limit}`).then((res) =>
+      res.json(),
+    ),
+  );
+}
+
+export async function getStaticSearchedProducts(searchTerm: string, limit: number) {
+  return await tryCatch<ProductType[]>(
+    fetch(
+      `${API_URL}/api/products/search?searchTerm=${encodeURIComponent(
+        searchTerm,
+      )}&page=1&limit=${limit}`,
+    ).then((res) => res.json()),
   );
 }
 
@@ -100,9 +112,14 @@ export async function getProductLocations(productSlug: string, storeSlug: string
 
 export async function searchProducts(searchTerm: string, page: number = 1, limit: number = 5) {
   return await tryCatch<ProductType[]>(
-    fetch(`${API_URL}/api/products/search?searchTerm=${searchTerm}&page=${page}&limit=${limit}`, {
-      cache: "no-store",
-    }).then((res) => res.json()),
+    fetch(
+      `${API_URL}/api/products/search?searchTerm=${encodeURIComponent(
+        searchTerm,
+      )}&page=${page}&limit=${limit}`,
+      {
+        cache: "no-store",
+      },
+    ).then((res) => res.json()),
   );
 }
 

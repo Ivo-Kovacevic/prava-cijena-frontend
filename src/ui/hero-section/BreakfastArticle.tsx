@@ -6,7 +6,7 @@ export default function BreakfastArticle() {
       <h1>Napravi svoj doručak</h1>
       <h5>Nemaš ideju što jesti ujutro? Imamo par prijedloga.</h5>
       <Link
-        href="/kategorije/riza"
+        href="/clanci/napravi-svoj-dorucak"
         className="w-fit rounded-inner bg-primary px-8 py-4 text-background shadow-md transition hover:brightness-95 focus:outline-foreground"
       >
         Pročitaj članak
