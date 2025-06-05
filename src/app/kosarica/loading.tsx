@@ -1,4 +1,4 @@
-import AccordionButton from "@/ui/icons/AccordionButton";
+import ArrowButton from "@/ui/icons/ArrowButton";
 
 export default async function Loading() {
   return (
@@ -13,7 +13,7 @@ export default async function Loading() {
             <div className="h-[60px] w-[60px] animate-pulse rounded-inner bg-gray-300" />
             <div className="h-6 w-40 animate-pulse rounded-inner bg-gray-300" />
             <div className="ml-auto h-[43px] w-[100px] animate-pulse rounded-inner bg-gray-300 md:h-[54px] md:w-[120px]" />
-            <AccordionButton className="h-min max-h-[15px] min-h-[15px] min-w-[25px] max-w-[25px] stroke-caption transition duration-300 hover:cursor-pointer hover:stroke-foreground" />
+            <ArrowButton className="h-min max-h-[15px] min-h-[15px] min-w-[25px] max-w-[25px] stroke-caption transition duration-300 hover:cursor-pointer hover:stroke-foreground" />
           </div>
           {i < 3 ? <div className="border-t border-separator" /> : ""}
         </div>

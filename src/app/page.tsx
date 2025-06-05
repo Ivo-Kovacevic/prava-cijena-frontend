@@ -1,14 +1,12 @@
 "use server";
 
-import Link from "next/link";
 import Product from "@/ui/Product";
 import SeeMore from "@/ui/SeeMore";
 import { getStaticCategories, getStaticProducts } from "@/lib/actions";
 import Category from "@/ui/Category";
-import dummyProductStores from "@/const/dummyProductStores";
 import GeneralError from "@/ui/icons/GeneralError";
-import StaticProductStore from "@/ui/product/StaticProductStore";
 import { categoryOrder } from "@/lib/helpers";
+import HeroSection from "@/ui/hero-section/HeroSection";
 
 export default async function Page() {
   const pagination = await getStaticProducts();
@@ -24,32 +22,7 @@ export default async function Page() {
 
   return (
     <main className="flex flex-col gap-32 py-16">
-      <section className="flex h-[400px] items-center gap-5 px-4 md:px-10 xl:h-[520px]">
-        <article className="flex w-full flex-col gap-5 xl:w-1/2">
-          <h1 className="bg-gradient-to-r from-lime-800 to-lime-600 bg-clip-text text-transparent">
-            Pronađi sve cijene
-            <br />
-            na jednom mjestu
-          </h1>
-          <h5>
-            Naša platforma omogućuje jednostavno praćenje cijena proizvoda iz različitih trgovina,
-            pomažući ti da uvijek pronađeš najbolju ponudu.
-          </h5>
-          <div>
-            <Link
-              href="/kategorije"
-              className="block w-fit rounded-xl bg-gradient-to-r from-lime-800 to-lime-600 px-8 py-4 text-background shadow-md transition hover:brightness-95 focus:outline-foreground"
-            >
-              Počni pretraživati
-            </Link>
-          </div>
-        </article>
-        <div className="hidden w-full flex-col gap-5 xl:flex xl:w-1/2">
-          {dummyProductStores.map((store) => (
-            <StaticProductStore key={store.id} store={store} />
-          ))}
-        </div>
-      </section>
+      <HeroSection />
 
       <section className="scrollbar-custom flex flex-col gap-y-5">
         <h3 className="px-4 md:px-10">Istaknuti proizvodi</h3>

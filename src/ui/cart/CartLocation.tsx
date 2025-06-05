@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import AccordionButton from "@/ui/icons/AccordionButton";
+import ArrowButton from "@/ui/icons/ArrowButton";
 import { StoreLocationType } from "@/@types/api-types";
 import { useActionState, useEffect, useState } from "react";
 import Link from "next/link";
@@ -50,7 +50,7 @@ export default function CartLocation({ location }: { location: StoreLocationType
             .toFixed(2)}
           &nbsp;€
         </h4>
-        <AccordionButton
+        <ArrowButton
           className={`h-min max-h-[15px] min-h-[15px] min-w-[25px] max-w-[25px] stroke-caption transition duration-300 hover:cursor-pointer hover:stroke-foreground ${isOpen ? "rotate-180" : ""}`}
           onClick={() => setIsOpen(!isOpen)}
         />

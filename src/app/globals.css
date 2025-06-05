@@ -61,6 +61,14 @@ h6 {
     scrollbar-color: var(--caption) var(--background);
 }
 
+.scrollbar-thin-desktop {
+    scrollbar-width: thin;
+}
+
+.scrollbar-none-mobile {
+    scrollbar-width: none;
+}
+
 @media (width >= 768px) {
     .scrollbar-none-desktop {
         scrollbar-width: none;
@@ -71,15 +79,52 @@ h6 {
     }
 }
 
-@media (width < 768px) {
-    .scrollbar-thin-desktop {
-        scrollbar-width: thin;
-    }
+.bg-breakfast {
+    background-image: url('/images/breakfast-mobile.webp');
+}
 
-    .scrollbar-none-mobile {
-        scrollbar-width: none;
+.bg-asian-food {
+    background-image: url('/images/asian-food-mobile.webp');
+}
+
+@media (min-width: 1024px) {
+    .bg-asian-food {
+        background-image: url('/images/asian-food-desktop.webp');
     }
 }
+
+@keyframes bump-left {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-6px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes bump-right {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(6px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.bump-left {
+    animation: bump-left 0.3s ease;
+}
+
+.bump-right {
+    animation: bump-right 0.3s ease;
+}
+
 
 .loader {
     height: 30px;
