@@ -20,10 +20,10 @@ export default async function ProductSidebar({ productSlug }: { productSlug: str
           src={
             product.data.imageUrl
               ? product.data.imageUrl
-              : "https://res.cloudinary.com/dqbe0apqn/image/upload/unknown.png"
+              : "https://res.cloudinary.com/dqbe0apqn/image/upload/unknown.webp"
           }
           alt={product.data.name}
-          className="object-contain drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)]"
+          className={`object-contain ${product.data.imageUrl ? "drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)]" : ""}`}
           fill
         />
       </div>

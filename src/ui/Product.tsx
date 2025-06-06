@@ -17,7 +17,7 @@ export default function Product({ product }: { product: ProductType }) {
         <FavoriteProductButton productId={product.id} />
       </div>
       <div className="h-[200px]">
-        <div className="flex h-[180px] justify-center">
+        <div className="flex h-[180px] items-center justify-center">
           <Link
             href={productLink}
             prefetch={false}
@@ -27,12 +27,12 @@ export default function Product({ product }: { product: ProductType }) {
               src={
                 product.imageUrl
                   ? product.imageUrl
-                  : "https://res.cloudinary.com/dqbe0apqn/image/upload/unknown.png"
+                  : "https://res.cloudinary.com/dqbe0apqn/image/upload/unknown.webp"
               }
               alt={`Slika proizvoda ${product.name}`}
               width={180}
               height={180}
-              className="aspect-square h-[180px] object-contain drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)] transition group-hover:scale-105"
+              className={`aspect-square h-[180px] object-contain transition group-hover:scale-105 ${product.imageUrl ? "drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)]" : ""}`}
             />
           </Link>
         </div>

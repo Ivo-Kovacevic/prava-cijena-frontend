@@ -73,12 +73,12 @@ export default function CartLocation({ location }: { location: StoreLocationType
                     src={
                       productStore.product.imageUrl
                         ? productStore.product.imageUrl
-                        : "https://res.cloudinary.com/dqbe0apqn/image/upload/unknown.png"
+                        : "https://res.cloudinary.com/dqbe0apqn/image/upload/unknown.webp"
                     }
                     alt={productStore.product.name}
                     width={80}
                     height={80}
-                    className="object-contain drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)] transition group-hover:scale-105"
+                    className={`object-contain transition group-hover:scale-105 ${productStore.product.imageUrl ? "drop-shadow-[0px_0px_2px_rgba(0,0,0,0.5)]" : ""} `}
                   />
                 </Link>
                 <div className="flex flex-col justify-center">
