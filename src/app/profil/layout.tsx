@@ -1,14 +1,19 @@
 import { ReactNode } from "react";
 import { checkUser } from "@/lib/actions";
-import GeneralError from "@/ui/icons/GeneralError";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Logout } from "@/ui/profile/Logout";
+import { redirect } from "next/navigation";
+import GeneralError from "@/ui/icons/GeneralError";
 
 export default async function Layout({ children }: { children: ReactNode }) {
   const result = await checkUser();
   if (result.error) {
-    return <GeneralError />;
+    if (result.error === "Unauthorized") {
+      redirect("/prijava");
+    } else {
+      return <GeneralError />;
+    }
   }
 
   return (

@@ -161,12 +161,21 @@ export async function checkUser() {
   const cookieStore = await cookies();
   const tokenValue = cookieStore.get("jwtToken")?.value;
 
-  return await tryCatch<UserType>(
-    fetch(`${API_URL}/api/users/me`, {
-      method: "GET",
-      headers: {
-        ...(tokenValue && { Cookie: `jwtToken=${tokenValue}` }),
-      },
-    }).then((res) => res.json()),
-  );
+  const response = await fetch(`${API_URL}/api/users/me`, {
+    method: "GET",
+    headers: {
+      ...(tokenValue && { Cookie: `jwtToken=${tokenValue}` }),
+    },
+  });
+
+  if (response.status === 401) {
+    return { error: "Unauthorized" };
+  }
+
+  if (!response.ok) {
+    return { error: "Server error while fetching user info" };
+  }
+
+  const data = await response.json();
+  return { data };
 }
