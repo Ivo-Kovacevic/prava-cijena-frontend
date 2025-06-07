@@ -1,15 +1,19 @@
 # PravaCijena Frontend Documentation
 
-## Description
+## 🧾 Overview
 
-Frontend for browsing, comparing, and searching grocery products and their prices from various stores.
+This is the frontend for PravaCijena, a web app for browsing, comparing, and searching grocery prices across different
+stores.
 
-The app is built with Next.js and uses slug-based routing for human-readable URLs. It communicates with
-the [PravaCijena API](https://github.com/Ivo-Kovacevic/prava-cijena-api) to fetch and display data.
+Built with Next.js (App Router), it features:
 
-## Starting locally
+- Slug-based, SEO-friendly routing
+- Server-side rendering for dynamic content
+- Integration with the [PravaCijena API](https://github.com/Ivo-Kovacevic/prava-cijena-api) to fetch and display data.
 
-### Prerequisites
+## 🚀 Starting locally
+
+### 🔧 Prerequisites
 
 Ensure you have the following installed:
 
@@ -18,7 +22,7 @@ Ensure you have the following installed:
 - Git
 - [PravaCijena API](https://github.com/Ivo-Kovacevic/prava-cijena-api) running locally
 
-### How to start
+### ▶️ How to start
 
 1. Clone repository:
 
@@ -60,7 +64,7 @@ Ensure you have the following installed:
 
 5. Open the page in browser
 
-## Application Routes
+## 🗺️ Application Routes
 
 The following is an overview of the application's routes, their sizes, and rendering strategies, as reported by the
 `next build` command (after running `npm run build`). This provides insights into the structure and performance
