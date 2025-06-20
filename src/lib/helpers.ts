@@ -1,5 +1,6 @@
 import { parse } from "cookie";
 import { ProcessedCookieData } from "@/@types/types";
+import { IS_PRODUCTION } from "@/utils/config";
 
 export function getTrgovinaForm(n: number): string {
   const lastTwo = n % 100;
@@ -52,8 +53,10 @@ export function getSetCookies(cookies: string[]) {
         if (parsedCookie.Path) options.path = parsedCookie.Path;
         if (parsedCookie.Expires) options.expires = new Date(parsedCookie.Expires);
         if (parsedCookie["Max-Age"]) options.maxAge = parseInt(parsedCookie["Max-Age"], 10);
-        if (parsedCookie.Domain) options.domain = parsedCookie.Domain;
         if (parsedCookie.SameSite) options.sameSite = toSameSite(parsedCookie.SameSite);
+        if (IS_PRODUCTION) {
+          options.domain = ".pravacijena.eu";
+        }
         options.httpOnly = true;
         options.secure = true;
 

@@ -8,7 +8,7 @@ import {
   StoreType,
   UserType,
 } from "@/@types/api-types";
-import { API_URL } from "@/utils/config";
+import { API_URL, IS_PRODUCTION } from "@/utils/config";
 import { tryCatch } from "@/utils/try-catch";
 import { cookies } from "next/headers";
 import { getSetCookies } from "@/lib/helpers";
@@ -205,7 +205,7 @@ export async function login(previousState: unknown, formData: FormData) {
 
 export async function logout() {
   const nextCookies = await cookies();
-  nextCookies.delete("jwtToken");
+  nextCookies.delete({ name: "jwtToken", domain: IS_PRODUCTION ? ".pravacijena.eu" : undefined });
 
   redirect("/");
 }
