@@ -11,6 +11,8 @@ import {
 import { API_URL } from "@/utils/config";
 import { tryCatch } from "@/utils/try-catch";
 import { cookies } from "next/headers";
+import { getSetCookies } from "@/lib/helpers";
+import { redirect } from "next/navigation";
 
 export async function getStaticCategories() {
   return await tryCatch<CategoryType[]>(
@@ -123,38 +125,89 @@ export async function searchProducts(searchTerm: string, page: number = 1, limit
   );
 }
 
-export async function login(email: string, password: string) {
+export async function register(previousState: unknown, formData: FormData) {
+  const email = formData.get("email")?.toString() as string;
+  const password = formData.get("password")?.toString() as string;
+  const repeatedPassword = formData.get("repeated-password")?.toString() as string;
+
+  if (password !== repeatedPassword) {
+    return { result: null, error: "Lozinke nisu iste." };
+  }
+
   const response = await tryCatch<Response>(
-    fetch(`${API_URL}/api/users/login`, {
+    fetch(`${API_URL}/api/users/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include",
       cache: "no-store",
       body: JSON.stringify({ email, password }),
     }),
   );
 
   if (response.error) {
-    return response.error.message;
+    return { result: null, error: "Nešto je pošlo po krivu :(" };
   }
 
+  const nextCookies = await cookies();
+
+  const setCookies = getSetCookies(response.data.headers.getSetCookie());
+  setCookies.forEach((cookie) => {
+    nextCookies.set(cookie.cookieName, cookie.cookieValue, cookie.options);
+  });
+
   if (!response.data.ok) {
-    return "Email ili lozinka je netočna";
+    const errorResponse = await response.data.json();
+    return {
+      result: null,
+      error: errorResponse?.error || "Neuspješna registracija.",
+    };
   }
 
   const user: UserType = await response.data.json();
+  return { result: user, error: null };
+}
 
-  return user;
+export async function login(previousState: unknown, formData: FormData) {
+  const email = formData.get("email")?.toString() as string;
+  const password = formData.get("password")?.toString() as string;
+
+  const response = await tryCatch<Response>(
+    fetch(`${API_URL}/api/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
+      body: JSON.stringify({ email, password }),
+    }),
+  );
+
+  if (response.error) {
+    return { result: null, error: "Nešto je pošlo po krivu :(" };
+  }
+
+  const nextCookies = await cookies();
+
+  const setCookies = getSetCookies(response.data.headers.getSetCookie());
+  setCookies.forEach((cookie) => {
+    nextCookies.set(cookie.cookieName, cookie.cookieValue, cookie.options);
+  });
+
+  if (!response.data.ok) {
+    const errorResponse = await response.data.json();
+    return { result: null, error: errorResponse?.error || "Neuspješna prijava." };
+  }
+
+  const user: UserType = await response.data.json();
+  return { result: user, error: null };
 }
 
 export async function logout() {
-  return await tryCatch(
-    fetch(`${API_URL}/api/users/logout`, {
-      method: "POST",
-    }).then((res) => res.json()),
-  );
+  const nextCookies = await cookies();
+  nextCookies.delete("jwtToken");
+
+  redirect("/");
 }
 
 export async function checkUser() {
