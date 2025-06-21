@@ -21,7 +21,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
       <section className="col-span-1 h-fit w-full flex-col justify-start gap-5">
         <div className="flex items-center justify-between">
           <h3>Moj profil</h3>
-          <FontAwesomeIcon icon={faUser} className="text-2xl" />
+          <FontAwesomeIcon icon={faUser} className="p-2 text-2xl" />
         </div>
         <h4>{result.data.email}</h4>
         <Logout />

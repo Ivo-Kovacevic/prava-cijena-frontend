@@ -86,7 +86,7 @@ export default function Page() {
           prefetch={false}
           className="text-caption underline transition hover:text-foreground"
         >
-          Prijavite se
+          Registrirajte se
         </Link>
       </div>
 

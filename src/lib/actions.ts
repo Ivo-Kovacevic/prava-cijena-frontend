@@ -158,10 +158,7 @@ export async function register(previousState: unknown, formData: FormData) {
 
   if (!response.data.ok) {
     const errorResponse = await response.data.json();
-    return {
-      result: null,
-      error: errorResponse?.error || "Neuspješna registracija.",
-    };
+    return { result: null, error: errorResponse?.error || "Neuspješna registracija." };
   }
 
   const user: UserType = await response.data.json();
